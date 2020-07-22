@@ -1,3 +1,9 @@
+
+#conditionButton, #ventilationButton {
+  position: fixed;
+  margin-left: 50px;
+  margin-top: 570px;
+}
 #dialogAboutCondition,#dialogAboutVentilation {
   width: 60%;
   height: 400px;
@@ -6,4 +12,11 @@
 }
 
 #closeDialogAboutVentilation {
+
 }
+
+.btn {
+  background-color: #3B72B4;
+}
+
+
