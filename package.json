@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+
     "dev": "nodemon app.js --ignore \"./sessions\"",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,9 +22,11 @@
   },
   "homepage": "https://github.com/bezzskilla/Quiz#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
     "hbs": "^4.1.1",
     "http-errors": "^1.8.0",
@@ -32,6 +36,9 @@
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "nodemon": "^2.0.4"
   }
 }
