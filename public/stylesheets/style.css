@@ -1,7 +1,18 @@
+
 #conditionButton, #ventilationButton {
   position: fixed;
   margin-left: 50px;
   margin-top: 570px;
+}
+#dialogAboutCondition,#dialogAboutVentilation {
+  width: 60%;
+  height: 400px;
+  margin: 15% 20% 0% 20%;
+  border: 1px solid black;
+}
+
+#closeDialogAboutVentilation {
+
 }
 
 .btn {
