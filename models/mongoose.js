@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
+// const dotenv = require('dotenv').config();
 
 
 // import mongoose from 'mongoose';
@@ -23,21 +23,16 @@ const userSchema = mongoose.Schema({
 })
 
 const quizSchema = mongoose.Schema({
-  arrayQuestions: Array,
+  question: String,
+  arrAnswers: Array,
 })
 
 const UserModel = mongoose.model('User', userSchema);
-const QuizModel = mongoose.model('Quiz', quizSchema);
+const VentilationModel = mongoose.model('Ventilation', quizSchema);
+const ConditionModel = mongoose.model('Condition', quizSchema);
 
-UserModel.create({
-  name: 'Man',
-  phone: 8 - 999 - 999 - 99 - 99,
-})
 
-QuizModel.create({
-  arrayQuestions: ['qwer', 'qwertyu', 'vkdcavhszdvbdubgesrbvjdrndfjvbdkjfbjkdf', 'jsdgbiuasviuabviarubiaeru', 'jhaebvebhe'],
 
-})
 
 // export { UserModel, QuizModel };
-module.exports = { UserModel, QuizModel };
+module.exports = { UserModel, VentilationModel, ConditionModel};
