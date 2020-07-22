@@ -7,6 +7,16 @@ let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVenti
 
 conditionButton.addEventListener('click', async e => {
   dialogAboutCondition.show(); //показываем диалоговое окно кондиционеров
+  const response = await fetch('/condition/question')
+  const resp = await response.json()
+
+  const hbsresponce = await fetch('/hbs/first.hbs')
+  let HBShtml = await hbsresponce.text();
+  let template = Handlebars.compile(HBShtml);
+  let html = template();
+
+  let forConditionhbs = document.querySelector("#forConditionhbs")
+  forConditionhbs.innerHTML = html;
 })
 closeDialogAboutCondition.addEventListener('click', async e => {
   dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
