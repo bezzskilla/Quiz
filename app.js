@@ -4,7 +4,7 @@ const path = require('path');
 // const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 // const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+// const FileStore = require('session-file-store')(session);
 const mongoose = require('mongoose');
 
 const mainRoute = require('./routes/main-route');
@@ -24,7 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // SESSION
