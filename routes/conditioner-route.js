@@ -1,5 +1,5 @@
 const express = require('express');
-const ConditionModel = require('../models/mongoose');
+const { ConditionModel } = require('../models/mongoose');
 
 const router = express.Router();
 

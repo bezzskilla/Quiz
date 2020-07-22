@@ -1,9 +1,13 @@
 <div id="main">
-  <p>{{answer}}</p>
+  <p>{{question}}</p>
   <div id="qestions">
-    {{#each}}
-    <input type="radio">
-    {{/each}}
-    <input type="submit">
+    <form>
+      <ul>
+        {{#each arrAnswers}}
+        <li><input type="checkbox" name={{this}}>{{this}}</li>
+        {{/each}}
+      </ul>
+      <input type="submit">
+    </form>
   </div>
 </div>
