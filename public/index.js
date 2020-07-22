@@ -4,22 +4,22 @@ let dialogAboutCondition = document.querySelector('#dialogAboutCondition')
 let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
-
+let counter = 0;
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
     conditionButton.style.cssText = 'display: none;';
     dialogAboutCondition.show(); //показываем диалоговое окно кондиционеров
-    const response = await fetch('/condition/question')
-  const resp = await response.json()
+    const response = await fetch('/conditioner/question')
+    const resp = await response.json()
+    console.log(resp[0])
+    const hbsresponce = await fetch('/hbs/first.hbs')
+    let HBShtml = await hbsresponce.text();
+    let template = Handlebars.compile(HBShtml);
+    let html = template({ question: resp[counter].question, arrAnswers: resp[counter].arrAnswers });
 
-  const hbsresponce = await fetch('/hbs/first.hbs')
-  let HBShtml = await hbsresponce.text();
-  let template = Handlebars.compile(HBShtml);
-  let html = template();
-
-  let forConditionhbs = document.querySelector("#forConditionhbs")
-  forConditionhbs.innerHTML = html;
+    let forConditionhbs = document.querySelector("#forConditionhbs")
+    forConditionhbs.innerHTML = html;
   })
 }
 if (closeDialogAboutCondition) {

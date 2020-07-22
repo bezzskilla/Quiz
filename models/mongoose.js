@@ -31,8 +31,4 @@ const UserModel = mongoose.model('User', userSchema);
 const VentilationModel = mongoose.model('Ventilation', quizSchema);
 const ConditionModel = mongoose.model('Condition', quizSchema);
 
-
-
-
-// export { UserModel, QuizModel };
 module.exports = { UserModel, VentilationModel, ConditionModel};
