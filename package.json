@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "npdemon app.js --ignore \"sessions\"",
+    "dev": "nodemon app.js --ignore \"./sessions\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/bezzskilla/Quiz#readme",
   "dependencies": {
     "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "hbs": "^4.1.1",
