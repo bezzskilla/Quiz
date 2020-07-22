@@ -7,9 +7,9 @@ const logger = require('morgan');
 // const FileStore = require('session-file-store')(session);
 const mongoose = require('mongoose');
 
-const mainRoute = require('./routes/main-route');
 const conditionerRoute = require('./routes/conditioner-route');
 const ventilationRoute = require('./routes/ventilation-route');
+const mainRoute = require('./routes/main-route');
 
 const app = express();
 
@@ -37,9 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   cookie: { secret: false },
 // }));
 // ----------------------------------------------------------------------ROUTES
+app.use('/conditioner', conditionerRoute);
+app.use('/ventilation', ventilationRoute);
 app.use('/', mainRoute);
-app.get('/conditioner', conditionerRoute);
-app.get('/ventilation', ventilationRoute);
 // ----------------------------------------------------------------------ROUTES
 
 // catch 404 and forward to error handler
