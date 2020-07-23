@@ -151,6 +151,8 @@ if (forConditionhbs) {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       // --------------------------------read email and phone of user
+      condProgressBar.style.cssText = 'width: 100%'
+      condProgressBar.innerText = '100%'
       const userInfoForm = document.getElementById('userInfo');
       answerOfUser.phone = userInfoForm.children[1].value;
       answerOfUser.email = userInfoForm.children[5].value;
@@ -306,6 +308,8 @@ if (forVentilationhbs) {
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
+      ventProgressBar.style.cssText = 'width: 100%'
+      ventProgressBar.innerText = '100%'
       const responce = await fetch('/ventilation/final', {
         method: "POST",
         headers: {
