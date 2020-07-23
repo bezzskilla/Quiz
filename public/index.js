@@ -86,7 +86,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -118,7 +118,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -131,6 +131,34 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
+    if (e.target.id === 'lastBtnCond') {
+      e.preventDefault();
+      // answerOfUser.answers.forEach((el, i) => {
+      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
+      // })
+      // --------------------------------read email and phone of user
+      const userInfoForm = document.getElementById('userInfo');
+      answerOfUser.phone = userInfoForm.children[1].value;
+      answerOfUser.email = userInfoForm.children[5].value;
+      // --------------------------------read email and phone of user
+      const responce = await fetch('/conditioner/final', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: answerOfUser.email,
+          phone: answerOfUser.phone,
+          answers: answerOfUser.answers,
+        }),
+      });
+      const resp = await responce.json();
+      const lastResponce = await fetch('/hbs/thx.hbs');
+      const lastText = await lastResponce.text();
+      const template = Handlebars.compile(lastText);
+      const html = template();
+      forConditionhbs.innerHTML = html;
+    }
   });
 }
 if (lastBtnCond) {
@@ -138,6 +166,11 @@ if (lastBtnCond) {
     // answerOfUser.answers.forEach((el, i) => {
     //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
     // })
+    // --------------------------------read email and phone of user
+    const userInfoForm = document.getElementById('userInfo');
+    answerOfUser.phone = userInfoForm.children[1].value;
+    answerOfUser.email = userInfoForm.children[5].value;
+    // --------------------------------read email and phone of user
     const responce = await fetch('/conditioner/final', {
       method: 'POST',
       headers: {
@@ -214,7 +247,7 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -245,7 +278,7 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
