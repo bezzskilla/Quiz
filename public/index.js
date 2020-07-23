@@ -22,9 +22,9 @@ if (conditionButton) {
     let HBShtml = await hbsresponce.text();
     let template = Handlebars.compile(HBShtml);
     let html = template({ question: resp[counterOfCondition].question, arrAnswers: resp[counterOfCondition].arrAnswers });
+    console.log(counterOfCondition)
     counterOfCondition++;
     forConditionhbs.innerHTML = html;
-    console.log(counterOfCondition)
   })
 }
 forConditionhbs.addEventListener('click', async e => {
@@ -34,16 +34,7 @@ forConditionhbs.addEventListener('click', async e => {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
     }
-    if (counterOfCondition < allQustionOfCondition.length) {
-      const hbsresponce = await fetch('/hbs/first.hbs')
-      let HBShtml = await hbsresponce.text();
-      let template = Handlebars.compile(HBShtml);
-      let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
-      counterOfCondition++;
-      console.log(counterOfCondition)
-      forConditionhbs.innerHTML = html;
-    }
-    if (counterOfCondition == allQustionOfCondition.length) {
+    if (counterOfCondition > allQustionOfCondition.length - 1) {
 
       const endResponce = await fetch('/hbs/endOfQuiz.hbs')
       let endHBShtml = await endResponce.text();
@@ -53,7 +44,17 @@ forConditionhbs.addEventListener('click', async e => {
       console.log(counterOfCondition)
       forConditionhbs.innerHTML = html;
 
-      console.log('sadcvds')
+      console.log('конец')
+      return
+    }
+    if (counterOfCondition <= allQustionOfCondition.length - 1) {
+      const hbsresponce = await fetch('/hbs/first.hbs')
+      let HBShtml = await hbsresponce.text();
+      let template = Handlebars.compile(HBShtml);
+      let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
+      console.log(counterOfCondition)
+      counterOfCondition++;
+      forConditionhbs.innerHTML = html;
     }
   }
 })
