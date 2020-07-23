@@ -1,13 +1,13 @@
 <div id="main">
-  <p>{{question}}</p>
+  <p class="question">{{question}}</p>
   <div id="qestions">
     <form id="quizConditionForm">
       <ul id="answers">
         {{#each arrAnswers}}
-        <li><input type="checkbox" name={{this}} value={{this}}> {{this}}</li>
+        <li class="answers"><input type="checkbox" name={{this}} value={{this}} class="checkBox"> {{this}}</li>
         {{/each}}
       </ul>
-      <input id="submitToCondition" type="submit">
+      <input id="submitToCondition" type="submit" value="Отправить" class="btn btn-primary btn-sm">
     </form>
   </div>
 </div>
