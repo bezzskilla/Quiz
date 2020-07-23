@@ -42,7 +42,7 @@
 
 }
 
-#discountBadge, #condDiscountBadge {
+#ventDiscountBadge, #condDiscountBadge {
   height: 20px;
   width: auto;
   border: 1px solid #3B72B4;
@@ -91,3 +91,12 @@ margin-top: 7px;
   height: 44%;
 }
 
+#farewellWindow {
+  margin-top: 10%;
+  margin-left: 40%;
+  text-align: center;
+}
+
+#close {
+  margin-left: 63%;
+}

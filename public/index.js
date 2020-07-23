@@ -7,6 +7,7 @@ const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVen
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const condProgressBar = document.getElementById('condProgressBar');
 const condDiscountBadge = document.getElementById('condDiscountBadge');
+const ventDiscountBadge = document.getElementById('ventDiscountBadge');
 const lastBtnCond = document.querySelector('#lastBtnCond');
 const ventProgressBar = document.getElementById('progressBar')
 
@@ -23,7 +24,7 @@ let neededArr = [];
 let counterOfCondition = 0;
 
 let allQustionOfCondition = null;
-const discountCounter = 0;
+let discountCounter = 0;
 let condPercentCounter = 12;
 let ventPercentCounter = 8;
 
@@ -50,10 +51,20 @@ if (conditionButton) {
 if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
     if (e.target.id == 'submitToCondition') {
-      e.preventDefault();
+      // e.preventDefault();
+      if (discountCounter < 4)
+        discountCounter += 2
+      if (discountCounter >= 4) {
+        discountCounter += 1
+      }
+      // if (discountCounter == 12) {
+      //   discountCounter -= 2
+      // }
+      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
       let percent = (condPercentCounter += 12)
       condProgressBar.style.cssText = `width: ${percent}%`
-      condProgressBar.innerText = `${percent}%`
+      condProgressBar.innerText = `${percent}%`;
+
       if (counterOfCondition === 3) {
         // прогресс бар на некоторые вопросы
         // отрисовка другой хбс
@@ -172,6 +183,7 @@ if (forConditionhbs) {
       condPercentCounter = 8
       condProgressBar.style.cssText = `width: ${condPercentCounter}`
       condProgressBar.innerText = ''
+      condDiscountBadge.innerText = `Ваша скидка: 0%`
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
@@ -195,6 +207,7 @@ if (closeDialogAboutCondition) {
     condPercentCounter = 8
     condProgressBar.style.cssText = `width: ${condPercentCounter}`
     condProgressBar.innerText = ''
+    condDiscountBadge.innerText = `Ваша скидка: 0%`
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
@@ -241,6 +254,15 @@ if (forVentilationhbs) {
       let percent = (ventPercentCounter += 11)
       progressBar.style.cssText = `width: ${percent}%`
       progressBar.innerText = `${percent}%`
+      if (discountCounter == 0) {
+        discountCounter += 1
+      }
+      if (discountCounter < 4)
+        discountCounter += 1
+      if (discountCounter >= 4) {
+        discountCounter += 1
+      }
+      ventDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs');
         const endHBShtml = await endResponce.text();
@@ -328,6 +350,7 @@ if (forVentilationhbs) {
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';
       forVentilationhbs.innerHTML = '';
+      ventDiscountBadge.innerText = `Ваша скидка: 0%`
       ventPercentCounter = 8
       ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
       ventProgressBar.innerText = ''
@@ -350,6 +373,7 @@ if (closeDialogAboutVentilation) {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
     forVentilationhbs.innerHTML = '';
+    ventDiscountBadge.innerText = `Ваша скидка: 0%`
     ventPercentCounter = 8
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
     ventProgressBar.innerText = ''
