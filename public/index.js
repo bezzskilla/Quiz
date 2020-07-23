@@ -12,6 +12,7 @@ let allQustionOfCondition = null
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
     conditionButton.style.cssText = 'display: none;';
+    dialogAboutCondition.style.cssText = 'display: flex';
     dialogAboutCondition.show(); //показываем диалоговое окно кондиционеров
     const response = await fetch('/conditioner/question')
     const resp = await response.json()
@@ -66,6 +67,7 @@ if (submitToCondition) {
 if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async e => {
     conditionButton.style.cssText = '';
+    dialogAboutCondition.style.cssText = 'display: none;';
     counterOfCondition = 0;
     console.log(counterOfCondition)
     allQustionOfCondition = null
@@ -77,11 +79,13 @@ if (closeDialogAboutCondition) {
 if (ventilationButton) {
   ventilationButton.addEventListener('click', async e => {
     ventilationButton.style.cssText = 'display: none;';
+    dialogAboutVentilation.style.cssText = 'display: flex';
     dialogAboutVentilation.show(); //показываем диалоговое окно вентиляции
   })
 }
 if (closeDialogAboutVentilation) {
   closeDialogAboutVentilation.addEventListener('click', async e => {
+    dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
     dialogAboutVentilation.close() //прячем диалоговое окно вентиляции
   })

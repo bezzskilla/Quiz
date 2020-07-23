@@ -2,7 +2,8 @@
 #conditionButton, #ventilationButton {
   position: fixed;
   margin-left: 50px;
-  margin-top: 570px;
+  bottom: 100px;
+  background-color: #3B72B4;
 }
 #dialogAboutCondition,#dialogAboutVentilation {
   width: 70%;
@@ -11,6 +12,7 @@
   border: 1px solid #3B72B4;;
   border-radius: 6px;
   background-color: aliceblue;
+  display: none;
 }
 
 #closeDialogAboutCondition, #closeDialogAboutVentilation {
@@ -22,9 +24,21 @@
   background-color: crimson;
 }
 
-
-.btn {
+#progressBar {
   background-color: #3B72B4;
 }
 
+#progress {
+  align-self: flex-end;
+  width: 650px;
+  overflow: hidden;
+  float: left;
+
+}
+
+#discountBadge {
+  height: 50px;
+  width: auto;
+
+}
 
