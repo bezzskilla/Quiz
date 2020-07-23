@@ -41,27 +41,35 @@ if (conditionButton) {
     forConditionhbs.innerHTML = html;
   })
 }
-forConditionhbs.addEventListener('click', async e => {
-  e.preventDefault()
-  if (e.target.id == 'submitToCondition') {
-    if (discountCounter < 6)
-      discountCounter += 2
-    if (discountCounter >= ) {
-      discountCounter += 1
-    }
-    if (discountCounter == 12) {
-      discountCounter -= 2
-    }
-    let percent = (percentCounter += 14)
-    progressBar.style.cssText = `width: ${percent}%`
-    progressBar.innerText = `${percent}%`
-    condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
-    if (counterOfCondition == 3) {
-      //прогресс бар на некоторые вопросы
-      //отрисовка другой хбс
-    }
-    if (counterOfCondition > allQustionOfCondition.length - 1) {
-
+if (forConditionhbs) {
+  forConditionhbs.addEventListener('click', async e => {
+    if (e.target.id == 'submitToCondition') {
+      e.preventDefault()
+      if (counterOfCondition == 3) {
+        //прогресс бар на некоторые вопросы
+        //отрисовка другой хбс
+        // const polzResponce = await fetch('/hbs/polzunok.hbs')
+        // let polzHBShtml = await polzResponce.text();
+        // let template = Handlebars.compile(polzHBShtml);
+        // let html = template();
+        // counterOfCondition++;
+        // console.log(counterOfCondition)
+        // forConditionhbs.innerHTML = html;
+        // return
+      }
+      if (counterOfCondition == 6) {
+        //прогресс бар на некоторые вопросы
+        //отрисовка другой хбс
+        // const polzResponce = await fetch('/hbs/polzunok.hbs')
+        // let polzHBShtml = await polzResponce.text();
+        // let template = Handlebars.compile(polzHBShtml);
+        // let html = template();
+        // counterOfCondition++;
+        // console.log(counterOfCondition)
+        // forConditionhbs.innerHTML = html;
+        // return
+      }
+      if (counterOfCondition > allQustionOfCondition.length - 1) {
         const endResponce = await fetch('/hbs/endOfCondQuiz.hbs')
         let endHBShtml = await endResponce.text();
         let template = Handlebars.compile(endHBShtml);
@@ -107,8 +115,9 @@ if (closeDialogAboutCondition) {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
     counterOfCondition = 0;
-    // console.log(counterOfCondition);
-    allQustionOfCondition = null;
+    console.log(counterOfCondition)
+    allQustionOfCondition = null
+    forConditionhbs.innerHTML = '';
     answerOfUser = {
       email: String,
       phone: String,
@@ -117,8 +126,8 @@ if (closeDialogAboutCondition) {
         answers: Array,
       }]
     };
-    dialogAboutCondition.close(); // прячем диалоговое окно кондиционеров
-  });
+    dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
+  })
 }
 
 
@@ -147,10 +156,6 @@ if (forVentilationhbs) {
   forVentilationhbs.addEventListener('click', async e => {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault()
-      if (counterOfVentilation == 3) {
-        //прогресс бар на некоторые вопросы
-        //отрисовка другой хбс
-      }
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
 
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs')
@@ -179,6 +184,7 @@ if (closeDialogAboutVentilation) {
   closeDialogAboutVentilation.addEventListener('click', async (e) => {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
+    forVentilationhbs.innerHTML = '';
     allQustionOfVentilation = null;
     counterOfVentilation = 0;
     dialogAboutVentilation.close() //прячем диалоговое окно вентиляции
