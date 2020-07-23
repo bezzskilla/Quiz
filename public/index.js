@@ -8,7 +8,7 @@ let forConditionhbs = document.querySelector('#forConditionhbs')
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null
-let answerOfUser = { name: '', phone = '', answers: [] }
+let answerOfUser = { name: '', phone: '', answers: [] }
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
@@ -30,7 +30,7 @@ if (conditionButton) {
 forConditionhbs.addEventListener('click', async e => {
   if (e.target.id == 'submitToCondition') {
     e.preventDefault()
-    if (counterOfCondition == 5) {
+    if (counterOfCondition == 3) {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
     }
@@ -40,6 +40,7 @@ forConditionhbs.addEventListener('click', async e => {
       let template = Handlebars.compile(HBShtml);
       let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
       counterOfCondition++;
+      console.log(counterOfCondition)
       forConditionhbs.innerHTML = html;
     }
     if (counterOfCondition == allQustionOfCondition.length) {
