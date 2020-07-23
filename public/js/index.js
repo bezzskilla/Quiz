@@ -147,14 +147,14 @@ if (forConditionhbs) {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const userInfoForm = document.getElementById('userInfoCond');
-      if (userInfoForm.children[1].value.length < 11) {
+      if (userInfoForm.children[2].value.length < 11) {
         alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
       }
       else {
         condProgressBar.style.cssText = 'width: 100%'
         condProgressBar.innerText = '100%'
-        answerOfUser.phone = userInfoForm.children[1].value;
-        answerOfUser.email = userInfoForm.children[3].value; // было 5, сделал 3
+        answerOfUser.phone = userInfoForm.children[2].value;
+        answerOfUser.email = userInfoForm.children[5].value;
         const responce = await fetch('/conditioner/final', {
           method: 'POST',
           headers: {
@@ -319,14 +319,14 @@ if (forVentilationhbs) {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const userInfoForm = document.getElementById('userInfoVent');
-      if (userInfoForm.children[1].value.length < 11) {
+      if (userInfoForm.children[2].value.length < 11) {
         alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
       }
       else {
         ventProgressBar.style.cssText = 'width: 100%';
         ventProgressBar.innerText = '100%';
-        answerOfUser.phone = userInfoForm.children[1].value;
-        answerOfUser.email = userInfoForm.children[3].value; // было 5, сделал 3
+        answerOfUser.phone = userInfoForm.children[2].value;
+        answerOfUser.email = userInfoForm.children[5].value;
         const responce = await fetch('/ventilation/final', {
           method: "POST",
           headers: {
