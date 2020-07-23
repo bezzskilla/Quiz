@@ -37,8 +37,11 @@ if (conditionButton) {
     const hbsresponce = await fetch('/hbs/first.hbs');
     const HBShtml = await hbsresponce.text();
     const template = Handlebars.compile(HBShtml);
-    const html = template({ question: resp[counterOfCondition].question, arrAnswers: resp[counterOfCondition].arrAnswers });
-    counterOfCondition++;
+    const html = template({
+      question: resp[counterOfCondition].question,
+      arrAnswers: resp[counterOfCondition].arrAnswers,
+    });
+    counterOfCondition += 1;
     console.log(counterOfCondition);
     forConditionhbs.innerHTML = html;
   });
@@ -48,7 +51,7 @@ if (forConditionhbs) {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault();
 
-      if (counterOfCondition == 3) {
+      if (counterOfCondition === 3) {
         // прогресс бар на некоторые вопросы
         // отрисовка другой хбс
         // const polzResponce = await fetch('/hbs/polzunok.hbs')
@@ -60,7 +63,7 @@ if (forConditionhbs) {
         // forConditionhbs.innerHTML = html;
         // return
       }
-      if (counterOfCondition == 6) {
+      if (counterOfCondition === 6) {
         // прогресс бар на некоторые вопросы
         // отрисовка другой хбс
         // const polzResponce = await fetch('/hbs/polzunok.hbs')
@@ -91,13 +94,13 @@ if (forConditionhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        console.log(answerOfUser);
+        // console.log(answerOfUser);
         // -----------------------------------запись ответов
         answerOfUser.answers.shift();
         counterOfCondition = 0;
-        console.log(counterOfCondition);
+        // console.log(counterOfCondition);
         forConditionhbs.innerHTML = html;
-        console.log('конец');
+        // console.log('конец');
         return;
       }
       if (counterOfCondition <= allQustionOfCondition.length - 1) {
@@ -108,7 +111,7 @@ if (forConditionhbs) {
           question: allQustionOfCondition[counterOfCondition].question,
           arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers,
         });
-        console.log(counterOfCondition);
+        // console.log(counterOfCondition);
         // -----------------------------------запись ответов
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
@@ -123,9 +126,9 @@ if (forConditionhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        console.log(answerOfUser);
+        // console.log(answerOfUser);
         // -----------------------------------запись ответов
-        counterOfCondition++;
+        counterOfCondition += 1;
         forConditionhbs.innerHTML = html;
       }
     }
@@ -157,7 +160,7 @@ if (closeDialogAboutCondition) {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
     counterOfCondition = 0;
-    console.log(counterOfCondition);
+    // console.log(counterOfCondition);
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
     answerOfUser = {
@@ -187,23 +190,43 @@ if (ventilationButton) {
     const hbsresponce = await fetch('/hbs/first.hbs');
     const HBShtml = await hbsresponce.text();
     const template = Handlebars.compile(HBShtml);
-    const html = template({ question: resp[counterOfVentilation].question, arrAnswers: resp[counterOfVentilation].arrAnswers });
-    console.log(counterOfVentilation);
-    counterOfVentilation++;
+    const html = template({
+      question: resp[counterOfVentilation].question,
+      arrAnswers: resp[counterOfVentilation].arrAnswers,
+    });
+    // console.log(counterOfVentilation);
+    counterOfVentilation += 1;
     forVentilationhbs.innerHTML = html;
   });
 }
 if (forVentilationhbs) {
   forVentilationhbs.addEventListener('click', async (e) => {
-    if (e.target.id == 'submitToCondition') {
+    if (e.target.id === 'submitToCondition') {
       e.preventDefault();
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs');
         const endHBShtml = await endResponce.text();
         const template = Handlebars.compile(endHBShtml);
         const html = template();
+        // -----------------------------------запись ответов
+        const question = document.getElementById('main').children[0];
+        const ul = document.getElementById('answers').children;
+        const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
+        neededArr = [];
+        for (let i = 0; i < arrOfAnwers.length; i += 1) {
+          if (arrOfAnwers[i].checked) {
+            neededArr.push(arrOfAnwers[i].value);
+          }
+        }
+        answerOfUser.answers.push({
+          question: question.innerText,
+          answers: neededArr,
+        });
+        // console.log(answerOfUser);
+        // -----------------------------------запись ответов
+        answerOfUser.answers.shift();
         counterOfVentilation = 0;
-        console.log(counterOfVentilation);
+        // console.log(counterOfVentilation);
         forVentilationhbs.innerHTML = html;
 
         return;
@@ -212,9 +235,28 @@ if (forVentilationhbs) {
         const hbsresponce = await fetch('/hbs/first.hbs');
         const HBShtml = await hbsresponce.text();
         const template = Handlebars.compile(HBShtml);
-        const html = template({ question: allQustionOfVentilation[counterOfVentilation].question, arrAnswers: allQustionOfVentilation[counterOfVentilation].arrAnswers });
-        console.log(counterOfVentilation);
-        counterOfVentilation++;
+        const html = template({
+          question: allQustionOfVentilation[counterOfVentilation].question,
+          arrAnswers: allQustionOfVentilation[counterOfVentilation].arrAnswers,
+        });
+        // -----------------------------------запись ответов
+        const question = document.getElementById('main').children[0];
+        const ul = document.getElementById('answers').children;
+        const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
+        neededArr = [];
+        for (let i = 0; i < arrOfAnwers.length; i += 1) {
+          if (arrOfAnwers[i].checked) {
+            neededArr.push(arrOfAnwers[i].value);
+          }
+        }
+        answerOfUser.answers.push({
+          question: question.innerText,
+          answers: neededArr,
+        });
+        // console.log(answerOfUser);
+        // -----------------------------------запись ответов
+        // console.log(counterOfVentilation);
+        counterOfVentilation += 1;
         forVentilationhbs.innerHTML = html;
       }
     }
@@ -226,6 +268,14 @@ if (closeDialogAboutVentilation) {
     ventilationButton.style.cssText = '';
     forVentilationhbs.innerHTML = '';
     allQustionOfVentilation = null;
+    answerOfUser = {
+      email: String,
+      phone: String,
+      answers: [{
+        question: String,
+        answers: Array,
+      }],
+    };
     counterOfVentilation = 0;
     dialogAboutVentilation.close(); // прячем диалоговое окно вентиляции
   });
