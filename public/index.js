@@ -45,14 +45,14 @@ forConditionhbs.addEventListener('click', async e => {
       // let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
     }
-    if (counterOfCondition >= allQustionOfCondition.length) {
+    if (counterOfCondition == allQustionOfCondition.length) {
 
 
-      const endResponce = await fetch('/hbs/first.hbs')
+      const endResponce = await fetch('/hbs/endOfQuiz.hbs')
       let endHBShtml = await endResponce.text();
       let template = Handlebars.compile(endHBShtml);
       let html = template();
-      counterOfCondition = 0;
+      counterOfCondition++;
       console.log(counterOfCondition)
       // let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
@@ -60,6 +60,7 @@ forConditionhbs.addEventListener('click', async e => {
 
       console.log('sadcvds')
     }
+
   }
 })
 
