@@ -28,16 +28,17 @@ if (conditionButton) {
     forConditionhbs.innerHTML = html;
   })
 }
-forConditionhbs.addEventListener('click', async e => {
-  if (e.target.id == 'submitToCondition') {
-    e.preventDefault()
-    let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
-    progressBar.style.cssText = `width: ${percent}%`
-    if (counterOfCondition == 3) {
-      //прогресс бар на некоторые вопросы
-      //отрисовка другой хбс
-    }
-    if (counterOfCondition > allQustionOfCondition.length - 1) {
+if (forConditionhbs) {
+  forConditionhbs.addEventListener('click', async e => {
+    if (e.target.id == 'submitToCondition') {
+      e.preventDefault()
+      let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
+      progressBar.style.cssText = `width: ${percent}%`
+      if (counterOfCondition == 3) {
+        //прогресс бар на некоторые вопросы
+        //отрисовка другой хбс
+      }
+      if (counterOfCondition > allQustionOfCondition.length - 1) {
 
         const endResponce = await fetch('/hbs/endOfCondQuiz.hbs')
         let endHBShtml = await endResponce.text();
