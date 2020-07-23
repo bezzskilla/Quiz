@@ -5,6 +5,7 @@ let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
 let forConditionhbs = document.querySelector('#forConditionhbs')
+let progressBar = document.getElementById('condProgressBar')
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null
@@ -30,6 +31,8 @@ if (conditionButton) {
 forConditionhbs.addEventListener('click', async e => {
   if (e.target.id == 'submitToCondition') {
     e.preventDefault()
+    let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
+    progressBar.style.cssText = `width: ${percent}%`
     if (counterOfCondition == 3) {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
