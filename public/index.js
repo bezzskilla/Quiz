@@ -5,9 +5,10 @@ const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 const closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
 const forConditionhbs = document.querySelector('#forConditionhbs');
-const progressBar = document.getElementById('condProgressBar');
-const condDiscountBadge = document.getElementById('condDiscountBadge');
-const lastBtnCond = document.querySelector('#lastBtnCond')
+const progressBar = document.querySelector('#condProgressBar');
+const condDiscountBadge = document.querySelector('#condDiscountBadge');
+// const lastBtnCond = document.querySelector('#lastBtnCond')
+const backToReality = document.querySelector('#backToReality')
 
 let answerOfUser = {
   email: String,
@@ -18,10 +19,7 @@ let answerOfUser = {
   }],
 };
 let neededArr = [];
-
 let counterOfCondition = 0;
-
-
 let allQustionOfCondition = null;
 const discountCounter = 0;
 const percentCounter = 12;
@@ -94,13 +92,10 @@ if (forConditionhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
         // -----------------------------------запись ответов
         answerOfUser.answers.shift();
         counterOfCondition = 0;
-        // console.log(counterOfCondition);
         forConditionhbs.innerHTML = html;
-        // console.log('конец');
         return;
       }
       if (counterOfCondition <= allQustionOfCondition.length - 1) {
@@ -111,7 +106,6 @@ if (forConditionhbs) {
           question: allQustionOfCondition[counterOfCondition].question,
           arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers,
         });
-        // console.log(counterOfCondition);
         // -----------------------------------запись ответов
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
@@ -126,12 +120,26 @@ if (forConditionhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
         // -----------------------------------запись ответов
         counterOfCondition += 1;
         forConditionhbs.innerHTML = html;
       }
     }
+    // if (e.target.id == "backToReality") {
+    //   e.preventDefault();
+    //   debugger
+    //   counterOfCondition -= 1;
+    //   const hbsresponce = await fetch('/hbs/first.hbs');
+    //   const HBShtml = await hbsresponce.text();
+    //   const template = Handlebars.compile(HBShtml);
+    //   const html = template({
+    //     question: allQustionOfCondition[counterOfCondition].question,
+    //     arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers,
+    //   });
+    //   // //запись ответов
+    //   // counterOfCondition += 1;
+    //   forConditionhbs.innerHTML = html;
+    // }
     if (e.target.id == "lastBtnCond") {
       e.preventDefault();
       // answerOfUser.answers.forEach((el, i) => {
@@ -213,7 +221,6 @@ if (ventilationButton) {
       question: resp[counterOfVentilation].question,
       arrAnswers: resp[counterOfVentilation].arrAnswers,
     });
-    // console.log(counterOfVentilation);
     counterOfVentilation += 1;
     forVentilationhbs.innerHTML = html;
   });
@@ -241,11 +248,9 @@ if (forVentilationhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
         // -----------------------------------запись ответов
         answerOfUser.answers.shift();
         counterOfVentilation = 0;
-        // console.log(counterOfVentilation);
         forVentilationhbs.innerHTML = html;
 
         return;
@@ -272,9 +277,7 @@ if (forVentilationhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
         // -----------------------------------запись ответов
-        // console.log(counterOfVentilation);
         counterOfVentilation += 1;
         forVentilationhbs.innerHTML = html;
       }
