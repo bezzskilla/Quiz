@@ -1,7 +1,7 @@
 <div id="main">
   <p>{{question}}</p>
   <div id="qestions">
-    <form id="quizConditionForm">
+    <form id="quizConditionForm" method="GET">
       <ul>
         {{#each arrAnswers}}
         <li><input type="checkbox" name={{this}}>{{this}}</li>
