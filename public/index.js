@@ -7,6 +7,7 @@ const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVen
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const progressBar = document.getElementById('condProgressBar');
 const condDiscountBadge = document.getElementById('condDiscountBadge');
+const lastBtnCond = document.querySelector('#lastBtnCond')
 
 let answerOfUser = {
   email: String,
@@ -129,6 +130,26 @@ if (forConditionhbs) {
       }
     }
   });
+}
+if (lastBtnCond) {
+  lastBtnCond.addEventListener('click', async (e) => {
+    // answerOfUser.answers.forEach((el, i) => {
+    //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
+    // })
+    const responce = await fetch('/conditioner/final', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: answerOfUser.email,
+        phone: answerOfUser.phone,
+        answers: answerOfUser.answers,
+      }),
+    })
+    const resp = await responce.json()
+    dialogAboutCondition.close()
+  })
 }
 
 if (closeDialogAboutCondition) {
