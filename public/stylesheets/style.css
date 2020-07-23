@@ -24,11 +24,11 @@
   background-color: crimson;
 }
 
-#progressBar {
+#progressBar, #condProgressBar {
   background-color: #3B72B4;
 }
 
-#progress {
+#progress, #condProgress {
   align-self: flex-end;
   width: 90%;
   background-color: aliceblue;
@@ -38,7 +38,7 @@
 
 }
 
-#discountBadge {
+#discountBadge, #condDiscountBadge {
   height: 20px;
   width: auto;
   border: 1px solid #3B72B4;
@@ -46,10 +46,5 @@
   margin-right: 2%;
 }
 
-@media screen and (max-width: 800px) {
-  #progress {
-    align-self: flex-end;
-    width: 90%;
-  }
-}
+
 

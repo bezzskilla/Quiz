@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-
     "dev": "nodemon app.js --ignore \"./sessions\"",
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
