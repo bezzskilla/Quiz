@@ -198,7 +198,7 @@ if (forVentilationhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
+        console.log(answerOfUser);
         // -----------------------------------запись ответов
         answerOfUser.answers.shift();
         counterOfVentilation = 0;
@@ -229,7 +229,7 @@ if (forVentilationhbs) {
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
+        console.log(answerOfUser);
         // -----------------------------------запись ответов
         // console.log(counterOfVentilation);
         counterOfVentilation += 1;
