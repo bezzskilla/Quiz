@@ -8,15 +8,6 @@ const connectionAddress = `mongodb+srv://Quiz:Quiz123@cluster0.bywip.mongodb.net
 mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.pluralize(null);
 
-// const userSchema = mongoose.Schema({
-//   name: String,
-//   phone: Number,
-//   answers: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'Quiz'
-//   }
-// })
-// зачем нам реф на квиз??
 const userSchema = mongoose.Schema({
   name: String,
   phone: Number,
