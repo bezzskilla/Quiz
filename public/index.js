@@ -5,6 +5,7 @@ let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
 let forConditionhbs = document.querySelector('#forConditionhbs')
+let progressBar = document.getElementById('condProgressBar')
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null
@@ -27,6 +28,7 @@ if (conditionButton) {
     forConditionhbs.innerHTML = html;
   })
 }
+<<<<<<< HEAD
 if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async e => {
     if (e.target.id == 'submitToCondition') {
@@ -56,7 +58,6 @@ if (forConditionhbs) {
         // return
       }
       if (counterOfCondition > allQustionOfCondition.length - 1) {
-
         const endResponce = await fetch('/hbs/endOfCondQuiz.hbs')
         let endHBShtml = await endResponce.text();
         let template = Handlebars.compile(endHBShtml);
