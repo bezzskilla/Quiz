@@ -34,6 +34,26 @@ if (forConditionhbs) {
       if (counterOfCondition == 3) {
         //прогресс бар на некоторые вопросы
         //отрисовка другой хбс
+        // const polzResponce = await fetch('/hbs/polzunok.hbs')
+        // let polzHBShtml = await polzResponce.text();
+        // let template = Handlebars.compile(polzHBShtml);
+        // let html = template();
+        // counterOfCondition++;
+        // console.log(counterOfCondition)
+        // forConditionhbs.innerHTML = html;
+        // return
+      }
+      if (counterOfCondition == 6) {
+        //прогресс бар на некоторые вопросы
+        //отрисовка другой хбс
+        // const polzResponce = await fetch('/hbs/polzunok.hbs')
+        // let polzHBShtml = await polzResponce.text();
+        // let template = Handlebars.compile(polzHBShtml);
+        // let html = template();
+        // counterOfCondition++;
+        // console.log(counterOfCondition)
+        // forConditionhbs.innerHTML = html;
+        // return
       }
       if (counterOfCondition > allQustionOfCondition.length - 1) {
 
@@ -68,6 +88,7 @@ if (closeDialogAboutCondition) {
     counterOfCondition = 0;
     console.log(counterOfCondition)
     allQustionOfCondition = null
+    forConditionhbs.innerHTML = '';
     dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
   })
 }
@@ -98,10 +119,6 @@ if (forVentilationhbs) {
   forVentilationhbs.addEventListener('click', async e => {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault()
-      if (counterOfVentilation == 3) {
-        //прогресс бар на некоторые вопросы
-        //отрисовка другой хбс
-      }
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
 
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs')
@@ -130,6 +147,7 @@ if (closeDialogAboutVentilation) {
   closeDialogAboutVentilation.addEventListener('click', async e => {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
+    forVentilationhbs.innerHTML = '';
     allQustionOfVentilation = null;
     counterOfVentilation = 0;
     dialogAboutVentilation.close() //прячем диалоговое окно вентиляции
