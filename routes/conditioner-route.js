@@ -16,7 +16,7 @@ router
     res.json({ isOkey: 'okey' });
   })
   .post('/final', async (req, res) => {
-    const info = req.body;
+    const {email, phone, answers} = req.body;
     const user = new UserModel({
       email,
       phone,
