@@ -15,6 +15,6 @@ router
   .get('/questionNext', async (req, res) => {
     // await UserModel.updateOne({ _id: "какое то айди" }, { "апдейченный ответ"});
     res.json({ isOkey: "okey" });
-  });
+  })
 
 module.exports = router;
