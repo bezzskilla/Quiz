@@ -11,7 +11,7 @@ mongoose.pluralize(null);
 const userSchema = mongoose.Schema({
   name: String,
   phone: Number,
-  answers: Object
+  answers: Array
 })
 
 const quizSchema = mongoose.Schema({

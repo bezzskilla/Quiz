@@ -4,10 +4,12 @@ let dialogAboutCondition = document.querySelector('#dialogAboutCondition')
 let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
+let forConditionhbs = document.querySelector('#forConditionhbs')
+let progressBar = document.getElementById('condProgressBar')
 
-let submitToCondition = document.querySelector('#submitToCondition')
 let counterOfCondition = 0;
 let allQustionOfCondition = null
+let answerOfUser = { name: '', phone: '', answers: [] }
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
@@ -22,47 +24,42 @@ if (conditionButton) {
     let template = Handlebars.compile(HBShtml);
     let html = template({ question: resp[counterOfCondition].question, arrAnswers: resp[counterOfCondition].arrAnswers });
     counterOfCondition++;
-    let forConditionhbs = document.querySelector("#forConditionhbs")
     forConditionhbs.innerHTML = html;
     console.log(counterOfCondition)
   })
 }
-
-if (submitToCondition) {
-  submitToCondition.addEventListener('click', async e => {
-    e.preventDefault();
-    console.log('sadvc')
+forConditionhbs.addEventListener('click', async e => {
+  if (e.target.id == 'submitToCondition') {
+    e.preventDefault()
+    let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
+    progressBar.style.cssText = `width: ${percent}%`
     if (counterOfCondition == 5) {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
     }
     if (counterOfCondition < allQustionOfCondition.length) {
-      //   const responce = await fetch("/conditioner/questionNext",{
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       name: name, // информация об отмеченных инпутах
-      //     }),
-      //   });
-      // }
-      // const responce = await fetch("/conditioner/questionNext")
-
       const hbsresponce = await fetch('/hbs/first.hbs')
       let HBShtml = await hbsresponce.text();
       let template = Handlebars.compile(HBShtml);
-      let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counter].arrAnswers });
+      let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
       counterOfCondition++;
-      console.log(counterOfCondition)
-      let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
     }
-    if (counterOfCondition >= allQustionOfCondition.length) {
-      //последний вопрос
+    if (counterOfCondition == allQustionOfCondition.length) {
+
+      const endResponce = await fetch('/hbs/endOfQuiz.hbs')
+      let endHBShtml = await endResponce.text();
+      let template = Handlebars.compile(endHBShtml);
+      let html = template();
+      counterOfCondition = 0;
+      console.log(counterOfCondition)
+      forConditionhbs.innerHTML = html;
+
+      console.log('sadcvds')
     }
-  })
-}
+  }
+})
+
 
 if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async e => {
