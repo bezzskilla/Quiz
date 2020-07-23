@@ -155,6 +155,23 @@ if (forConditionhbs) {
       const html = template();
       forConditionhbs.innerHTML = html;
     }
+    if (e.target.id == "close") {
+      e.preventDefault();
+      conditionButton.style.cssText = '';
+      dialogAboutCondition.style.cssText = 'display: none;';
+      counterOfCondition = 0;
+      allQustionOfCondition = null;
+      forConditionhbs.innerHTML = '';
+      answerOfUser = {
+        email: String,
+        phone: String,
+        answers: [{
+          question: String,
+          answers: Array,
+        }],
+      };
+      dialogAboutCondition.close();
+    }
   });
 }
 
@@ -163,7 +180,6 @@ if (closeDialogAboutCondition) {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
     counterOfCondition = 0;
-    // console.log(counterOfCondition);
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
     answerOfUser = {
@@ -262,6 +278,46 @@ if (forVentilationhbs) {
         counterOfVentilation += 1;
         forVentilationhbs.innerHTML = html;
       }
+    }
+    if (e.target.id == "lastBtnVent") {
+      e.preventDefault();
+      // answerOfUser.answers.forEach((el, i) => {
+      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
+      // })
+      const responce = await fetch('/ventilation/final', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: answerOfUser.email,
+          phone: answerOfUser.phone,
+          answers: answerOfUser.answers,
+        }),
+      })
+      const resp = await responce.json()
+      const lastResponce = await fetch('/hbs/thx.hbs')
+      const lastText = await lastResponce.text();
+      const template = Handlebars.compile(lastText);
+      const html = template();
+      forVentilationhbs.innerHTML = html;
+    }
+    if (e.target.id == "close") {
+      e.preventDefault();
+      dialogAboutVentilation.style.cssText = 'display: none;';
+      ventilationButton.style.cssText = '';
+      forVentilationhbs.innerHTML = '';
+      allQustionOfVentilation = null;
+      answerOfUser = {
+        email: String,
+        phone: String,
+        answers: [{
+          question: String,
+          answers: Array,
+        }],
+      };
+      counterOfVentilation = 0;
+      dialogAboutVentilation.close();
     }
   });
 }
