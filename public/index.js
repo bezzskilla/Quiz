@@ -132,27 +132,30 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
+    if (e.target.id == "lastBtnCond") {
+      e.preventDefault();
+      // answerOfUser.answers.forEach((el, i) => {
+      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
+      // })
+      const responce = await fetch('/conditioner/final', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: answerOfUser.email,
+          phone: answerOfUser.phone,
+          answers: answerOfUser.answers,
+        }),
+      })
+      const resp = await responce.json()
+      const lastResponce = await fetch('/hbs/thx.hbs')
+      const lastText = await lastResponce.text();
+      const template = Handlebars.compile(lastText);
+      const html = template();
+      forConditionhbs.innerHTML = html;
+    }
   });
-}
-if (lastBtnCond) {
-  lastBtnCond.addEventListener('click', async (e) => {
-    // answerOfUser.answers.forEach((el, i) => {
-    //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-    // })
-    const responce = await fetch('/conditioner/final', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: answerOfUser.email,
-        phone: answerOfUser.phone,
-        answers: answerOfUser.answers,
-      }),
-    })
-    const resp = await responce.json()
-    dialogAboutCondition.close()
-  })
 }
 
 if (closeDialogAboutCondition) {
