@@ -4,12 +4,11 @@ let dialogAboutCondition = document.querySelector('#dialogAboutCondition')
 let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
-// let quizConditionForm = document.querySelector("#quizConditionForm")
 let forConditionhbs = document.querySelector('#forConditionhbs')
 
-let submitToCondition = document.querySelector('#submitToCondition')
 let counterOfCondition = 0;
 let allQustionOfCondition = null
+let answerOfUser = { name: '', phone = '', answers: [] }
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
@@ -41,22 +40,17 @@ forConditionhbs.addEventListener('click', async e => {
       let template = Handlebars.compile(HBShtml);
       let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
       counterOfCondition++;
-      console.log(counterOfCondition)
-      // let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
     }
-    if (counterOfCondition >= allQustionOfCondition.length) {
+    if (counterOfCondition == allQustionOfCondition.length) {
 
-
-      const endResponce = await fetch('/hbs/first.hbs')
+      const endResponce = await fetch('/hbs/endOfQuiz.hbs')
       let endHBShtml = await endResponce.text();
       let template = Handlebars.compile(endHBShtml);
       let html = template();
       counterOfCondition = 0;
       console.log(counterOfCondition)
-      // let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
-
 
       console.log('sadcvds')
     }
