@@ -20,7 +20,6 @@ let neededArr = [];
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null
-let answerOfUser = { name: '', phone: '', answers: [] }
 let discountCounter = 0;
 let percentCounter = 12;
 
@@ -91,18 +90,18 @@ if (forConditionhbs) {
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
         const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
-         neededArr = [];
-         for (let i = 0; i < arrOfAnwers.length; i += 1) {
-        if (arrOfAnwers[i].checked) {
-          neededArr.push(arrOfAnwers[i].value);
+        neededArr = [];
+        for (let i = 0; i < arrOfAnwers.length; i += 1) {
+          if (arrOfAnwers[i].checked) {
+            neededArr.push(arrOfAnwers[i].value);
+          }
         }
-      }
-      answerOfUser.answers.push({
-        question: question.innerText,
-        answers: neededArr,
-      });
-      console.log(answerOfUser);
-      // -----------------------------------запись ответов
+        answerOfUser.answers.push({
+          question: question.innerText,
+          answers: neededArr,
+        });
+        console.log(answerOfUser);
+        // -----------------------------------запись ответов
         counterOfCondition++;
         forConditionhbs.innerHTML = html;
       }
