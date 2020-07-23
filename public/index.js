@@ -5,10 +5,10 @@ const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 const closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
 const forConditionhbs = document.querySelector('#forConditionhbs');
-const progressBar = document.querySelector('#condProgressBar');
-const condDiscountBadge = document.querySelector('#condDiscountBadge');
-// const lastBtnCond = document.querySelector('#lastBtnCond')
-const backToReality = document.querySelector('#backToReality')
+const condProgressBar = document.getElementById('condProgressBar');
+const condDiscountBadge = document.getElementById('condDiscountBadge');
+// const lastBtnCond = document.querySelector('#lastBtnCond');
+const ventProgressBar = document.getElementById('progressBar')
 
 let answerOfUser = {
   email: String,
@@ -20,9 +20,12 @@ let answerOfUser = {
 };
 let neededArr = [];
 let counterOfCondition = 0;
+
+
 let allQustionOfCondition = null;
 const discountCounter = 0;
-const percentCounter = 12;
+let condPercentCounter = 12;
+let ventPercentCounter = 8;
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async (e) => {
@@ -48,7 +51,9 @@ if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault();
-
+      let percent = (condPercentCounter += 12)
+      condProgressBar.style.cssText = `width: ${percent}%`
+      condProgressBar.innerText = `${percent}%`
       if (counterOfCondition === 3) {
         // прогресс бар на некоторые вопросы
         // отрисовка другой хбс
@@ -85,7 +90,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -113,7 +118,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -145,19 +150,24 @@ if (forConditionhbs) {
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
+      // --------------------------------read email and phone of user
+      const userInfoForm = document.getElementById('userInfo');
+      answerOfUser.phone = userInfoForm.children[1].value;
+      answerOfUser.email = userInfoForm.children[5].value;
+      // --------------------------------read email and phone of user
       const responce = await fetch('/conditioner/final', {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: answerOfUser.email,
           phone: answerOfUser.phone,
           answers: answerOfUser.answers,
         }),
-      })
-      const resp = await responce.json()
-      const lastResponce = await fetch('/hbs/thx.hbs')
+      });
+      const resp = await responce.json();
+      const lastResponce = await fetch('/hbs/thx.hbs');
       const lastText = await lastResponce.text();
       const template = Handlebars.compile(lastText);
       const html = template();
@@ -167,6 +177,9 @@ if (forConditionhbs) {
       e.preventDefault();
       conditionButton.style.cssText = '';
       dialogAboutCondition.style.cssText = 'display: none;';
+      condPercentCounter = 8
+      condProgressBar.style.cssText = `width: ${condPercentCounter}`
+      condProgressBar.innerText = ''
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
@@ -187,6 +200,9 @@ if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async (e) => {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
+    condPercentCounter = 8
+    condProgressBar.style.cssText = `width: ${condPercentCounter}`
+    condProgressBar.innerText = ''
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
@@ -229,6 +245,9 @@ if (forVentilationhbs) {
   forVentilationhbs.addEventListener('click', async (e) => {
     if (e.target.id === 'submitToCondition') {
       e.preventDefault();
+      let percent = (ventPercentCounter += 11)
+      progressBar.style.cssText = `width: ${percent}%`
+      progressBar.innerText = `${percent}%`
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs');
         const endHBShtml = await endResponce.text();
@@ -241,7 +260,7 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -270,7 +289,7 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -310,6 +329,9 @@ if (forVentilationhbs) {
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';
       forVentilationhbs.innerHTML = '';
+      ventPercentCounter = 8
+      ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
+      ventProgressBar.innerText = ''
       allQustionOfVentilation = null;
       answerOfUser = {
         email: String,
@@ -329,6 +351,9 @@ if (closeDialogAboutVentilation) {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
     forVentilationhbs.innerHTML = '';
+    ventPercentCounter = 8
+    ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
+    ventProgressBar.innerText = ''
     allQustionOfVentilation = null;
     answerOfUser = {
       email: String,

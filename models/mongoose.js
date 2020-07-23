@@ -9,7 +9,7 @@ mongoose.pluralize(null);
 
 const userSchema = mongoose.Schema({
   email: String,
-  phone: Number,
+  phone: String,
   answers: Array,
 });
 
