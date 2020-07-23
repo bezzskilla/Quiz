@@ -19,10 +19,10 @@ let answerOfUser = {
   }],
 };
 let neededArr = [];
+
 let counterOfCondition = 0;
-
-
 let allQustionOfCondition = null;
+
 const discountCounter = 0;
 let condPercentCounter = 12;
 let ventPercentCounter = 8;
@@ -130,50 +130,38 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
-    // if (e.target.id == "backToReality") {
-    //   e.preventDefault();
-    //   debugger
-    //   counterOfCondition -= 1;
-    //   const hbsresponce = await fetch('/hbs/first.hbs');
-    //   const HBShtml = await hbsresponce.text();
-    //   const template = Handlebars.compile(HBShtml);
-    //   const html = template({
-    //     question: allQustionOfCondition[counterOfCondition].question,
-    //     arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers,
-    //   });
-    //   // //запись ответов
-    //   // counterOfCondition += 1;
-    //   forConditionhbs.innerHTML = html;
-    // }
     if (e.target.id == "lastBtnCond") {
       e.preventDefault();
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
-      // --------------------------------read email and phone of user
-      condProgressBar.style.cssText = 'width: 100%'
-      condProgressBar.innerText = '100%'
-      const userInfoForm = document.getElementById('userInfo');
-      answerOfUser.phone = userInfoForm.children[1].value;
-      answerOfUser.email = userInfoForm.children[5].value;
-      // --------------------------------read email and phone of user
-      const responce = await fetch('/conditioner/final', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: answerOfUser.email,
-          phone: answerOfUser.phone,
-          answers: answerOfUser.answers,
-        }),
-      });
-      const resp = await responce.json();
-      const lastResponce = await fetch('/hbs/thx.hbs');
-      const lastText = await lastResponce.text();
-      const template = Handlebars.compile(lastText);
-      const html = template();
-      forConditionhbs.innerHTML = html;
+      const userInfoForm = document.getElementById('userInfoCond');
+      if (userInfoForm.children[1].value.length < 11) {
+        alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
+      }
+      else {
+        condProgressBar.style.cssText = 'width: 100%'
+        condProgressBar.innerText = '100%'
+        answerOfUser.phone = userInfoForm.children[1].value;
+        answerOfUser.email = userInfoForm.children[3].value; // было 5, сделал 3
+        const responce = await fetch('/conditioner/final', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: answerOfUser.email,
+            phone: answerOfUser.phone,
+            answers: answerOfUser.answers,
+          }),
+        });
+        const resp = await responce.json();
+        const lastResponce = await fetch('/hbs/thx.hbs');
+        const lastText = await lastResponce.text();
+        const template = Handlebars.compile(lastText);
+        const html = template();
+        forConditionhbs.innerHTML = html;
+      }
     }
     if (e.target.id == "close") {
       e.preventDefault();
@@ -308,34 +296,42 @@ if (forVentilationhbs) {
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
-      ventProgressBar.style.cssText = 'width: 100%'
-      ventProgressBar.innerText = '100%'
-      const responce = await fetch('/ventilation/final', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: answerOfUser.email,
-          phone: answerOfUser.phone,
-          answers: answerOfUser.answers,
-        }),
-      })
-      const resp = await responce.json()
-      const lastResponce = await fetch('/hbs/thx.hbs')
-      const lastText = await lastResponce.text();
-      const template = Handlebars.compile(lastText);
-      const html = template();
-      forVentilationhbs.innerHTML = html;
+      const userInfoForm = document.getElementById('userInfoVent');
+      if (userInfoForm.children[1].value.length < 11) {
+        alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
+      }
+      else {
+        ventProgressBar.style.cssText = 'width: 100%';
+        ventProgressBar.innerText = '100%';
+        answerOfUser.phone = userInfoForm.children[1].value;
+        answerOfUser.email = userInfoForm.children[3].value; // было 5, сделал 3
+        const responce = await fetch('/ventilation/final', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: answerOfUser.email,
+            phone: answerOfUser.phone,
+            answers: answerOfUser.answers,
+          }),
+        })
+        const resp = await responce.json();
+        const lastResponce = await fetch('/hbs/thx.hbs');
+        const lastText = await lastResponce.text();
+        const template = Handlebars.compile(lastText);
+        const html = template();
+        forVentilationhbs.innerHTML = html;
+      }
     }
     if (e.target.id == "close") {
       e.preventDefault();
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';
       forVentilationhbs.innerHTML = '';
-      ventPercentCounter = 8
-      ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
-      ventProgressBar.innerText = ''
+      ventPercentCounter = 8;
+      ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
+      ventProgressBar.innerText = '';
       allQustionOfVentilation = null;
       answerOfUser = {
         email: String,
@@ -356,8 +352,8 @@ if (closeDialogAboutVentilation) {
     ventilationButton.style.cssText = '';
     forVentilationhbs.innerHTML = '';
     ventPercentCounter = 8
-    ventProgressBar.style.cssText = `width: ${ventPercentCounter}`
-    ventProgressBar.innerText = ''
+    ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
+    ventProgressBar.innerText = '';
     allQustionOfVentilation = null;
     answerOfUser = {
       email: String,
