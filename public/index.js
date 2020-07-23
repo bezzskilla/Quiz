@@ -33,7 +33,7 @@ forConditionhbs.addEventListener('click', async e => {
     e.preventDefault()
     let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
     progressBar.style.cssText = `width: ${percent}%`
-    if (counterOfCondition == 5) {
+    if (counterOfCondition == 3) {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
     }
@@ -43,6 +43,7 @@ forConditionhbs.addEventListener('click', async e => {
       let template = Handlebars.compile(HBShtml);
       let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
       counterOfCondition++;
+      console.log(counterOfCondition)
       forConditionhbs.innerHTML = html;
     }
     if (counterOfCondition == allQustionOfCondition.length) {
