@@ -161,31 +161,6 @@ if (forConditionhbs) {
     }
   });
 }
-if (lastBtnCond) {
-  lastBtnCond.addEventListener('click', async (e) => {
-    // answerOfUser.answers.forEach((el, i) => {
-    //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-    // })
-    // --------------------------------read email and phone of user
-    const userInfoForm = document.getElementById('userInfo');
-    answerOfUser.phone = userInfoForm.children[1].value;
-    answerOfUser.email = userInfoForm.children[5].value;
-    // --------------------------------read email and phone of user
-    const responce = await fetch('/conditioner/final', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: answerOfUser.email,
-        phone: answerOfUser.phone,
-        answers: answerOfUser.answers,
-      }),
-    });
-    const resp = await responce.json();
-    dialogAboutCondition.close();
-  });
-}
 
 if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async (e) => {
