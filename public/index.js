@@ -4,6 +4,7 @@ let dialogAboutCondition = document.querySelector('#dialogAboutCondition')
 let dialogAboutVentilation = document.querySelector('#dialogAboutVentilation')
 let closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition')
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
+
 let submitToCondition = document.querySelector('#submitToCondition')
 let counterOfCondition = 0;
 let allQustionOfCondition = null
@@ -22,13 +23,18 @@ if (conditionButton) {
     counterOfCondition++;
     let forConditionhbs = document.querySelector("#forConditionhbs")
     forConditionhbs.innerHTML = html;
+    console.log(counterOfCondition)
   })
 }
 
 if (submitToCondition) {
   submitToCondition.addEventListener('click', async e => {
-    console.log('sadvc')
     e.preventDefault();
+    console.log('sadvc')
+    if (counterOfCondition == 5) {
+      //прогресс бар на некоторые вопросы
+      //отрисовка другой хбс
+    }
     if (counterOfCondition < allQustionOfCondition.length) {
       //   const responce = await fetch("/conditioner/questionNext",{
       //     method: "POST",
@@ -40,12 +46,14 @@ if (submitToCondition) {
       //     }),
       //   });
       // }
-      const responce = await fetch("/conditioner/questionNext")
+      // const responce = await fetch("/conditioner/questionNext")
+
       const hbsresponce = await fetch('/hbs/first.hbs')
       let HBShtml = await hbsresponce.text();
       let template = Handlebars.compile(HBShtml);
       let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counter].arrAnswers });
       counterOfCondition++;
+      console.log(counterOfCondition)
       let forConditionhbs = document.querySelector("#forConditionhbs")
       forConditionhbs.innerHTML = html;
     }
@@ -58,9 +66,10 @@ if (submitToCondition) {
 if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async e => {
     conditionButton.style.cssText = '';
-    dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
-    counter = 0;
+    counterOfCondition = 0;
+    console.log(counterOfCondition)
     allQustionOfCondition = null
+    dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
   })
 }
 
