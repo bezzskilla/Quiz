@@ -7,7 +7,7 @@ const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVen
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const progressBar = document.getElementById('condProgressBar');
 const condDiscountBadge = document.getElementById('condDiscountBadge');
-const lastBtnCond = document.querySelector('#lastBtnCond')
+const lastBtnCond = document.querySelector('#lastBtnCond');
 
 let answerOfUser = {
   email: String,
@@ -20,7 +20,6 @@ let answerOfUser = {
 let neededArr = [];
 
 let counterOfCondition = 0;
-
 
 let allQustionOfCondition = null;
 const discountCounter = 0;
@@ -87,7 +86,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -119,7 +118,7 @@ if (forConditionhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
@@ -132,24 +131,29 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "lastBtnCond") {
+    if (e.target.id === 'lastBtnCond') {
       e.preventDefault();
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
+      // --------------------------------read email and phone of user
+      const userInfoForm = document.getElementById('userInfo');
+      answerOfUser.phone = userInfoForm.children[1].value;
+      answerOfUser.email = userInfoForm.children[5].value;
+      // --------------------------------read email and phone of user
       const responce = await fetch('/conditioner/final', {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: answerOfUser.email,
           phone: answerOfUser.phone,
           answers: answerOfUser.answers,
         }),
-      })
-      const resp = await responce.json()
-      const lastResponce = await fetch('/hbs/thx.hbs')
+      });
+      const resp = await responce.json();
+      const lastResponce = await fetch('/hbs/thx.hbs');
       const lastText = await lastResponce.text();
       const template = Handlebars.compile(lastText);
       const html = template();
@@ -234,14 +238,14 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
+        console.log(answerOfUser);
         // -----------------------------------запись ответов
         answerOfUser.answers.shift();
         counterOfVentilation = 0;
@@ -265,14 +269,14 @@ if (forVentilationhbs) {
         neededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].value);
+            neededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
         answerOfUser.answers.push({
           question: question.innerText,
           answers: neededArr,
         });
-        // console.log(answerOfUser);
+        console.log(answerOfUser);
         // -----------------------------------запись ответов
         // console.log(counterOfVentilation);
         counterOfVentilation += 1;

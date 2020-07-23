@@ -13,6 +13,7 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
+    console.log(email, phone, answers);
     const user = new UserModel({
       email,
       phone,
