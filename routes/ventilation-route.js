@@ -1,5 +1,5 @@
 const express = require('express');
-const VentilationModel = require('../models/mongoose');
+const { VentilationModel } = require('../models/mongoose');
 
 const router = express.Router();
 

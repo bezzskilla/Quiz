@@ -9,11 +9,9 @@ router
   })
   .get('/question', async (req, res) => {
     const quiz = await ConditionModel.find();
-    // await UserModel.create(); нам надо создать документ, куда впоследствие будем пушить ответы
     res.json(quiz);
   })
   .get('/questionNext', async (req, res) => {
-    // await UserModel.updateOne({ _id: "какое то айди" }, { "апдейченный ответ"});
     res.json({ isOkey: "okey" });
   })
 
