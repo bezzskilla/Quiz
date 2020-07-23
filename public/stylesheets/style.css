@@ -13,6 +13,7 @@
   border-radius: 6px;
   background-color: aliceblue;
   display: none;
+  position: fixed;
 }
 
 #closeDialogAboutCondition, #closeDialogAboutVentilation {
@@ -26,13 +27,16 @@
 
 #progressBar, #condProgressBar {
   background-color: #3B72B4;
+  /* position: fixed; */
 }
 
 #progress, #condProgress {
   align-self: flex-end;
-  width: 90%;
+  margin-left: 100px;
+  width: 50%;
   background-color: aliceblue;
   border: 1px solid #3B72B4;
+  position: fixed;
   /* overflow: hidden; */
   /* float: left; */
 
@@ -42,6 +46,8 @@
   height: 20px;
   width: auto;
   border: 1px solid #3B72B4;
+  position: fixed;
+  margin-left: 55%;
   margin-top:1%;
   margin-right: 2%;
 }
@@ -64,11 +70,24 @@ white-space: nowrap;
   margin: 0px 10px;
 }
 
-#submitToCondition, #ventSubButton, #condSubButton {
+#submitToCondition, #lastBtnVent, #lastBtnCond, #close {
   background-color: #3B72B4;
+  /* position: relative;
+  margin-left: 60%;
+  margin-top:17%;
+  margin-right: 2%; */
 }
-#ventSubButton, #condSubButton {
+#lastBtnVent, #lastBtnCond, #close {
 margin-top: 7px;
 }
 
+#mailInput, #secondMailInput, #phoneInput, #secondPhoneInput {
+  margin-bottom: 4px;
+  margin-left: 2px;
+  border: 1px solid #3B72B4;;
+}
+
+#questions {
+  height: 44%;
+}
 
