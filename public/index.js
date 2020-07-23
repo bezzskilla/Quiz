@@ -20,6 +20,8 @@ let answerOfUser = {
 let neededArr = [];
 
 let counterOfCondition = 0;
+
+
 let allQustionOfCondition = null;
 const discountCounter = 0;
 const percentCounter = 12;
@@ -45,6 +47,7 @@ if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault();
+
       if (counterOfCondition == 3) {
         // прогресс бар на некоторые вопросы
         // отрисовка другой хбс
