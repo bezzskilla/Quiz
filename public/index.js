@@ -6,10 +6,13 @@ let closeDialogAboutCondition = document.querySelector('#closeDialogAboutConditi
 let closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation')
 let forConditionhbs = document.querySelector('#forConditionhbs')
 let progressBar = document.getElementById('condProgressBar')
+let condDiscountBadge = document.getElementById('condDiscountBadge')
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null
 let answerOfUser = { name: '', phone: '', answers: [] }
+let discountCounter = 0;
+let percentCounter = 12;
 
 if (conditionButton) {
   conditionButton.addEventListener('click', async e => {
@@ -29,10 +32,20 @@ if (conditionButton) {
   })
 }
 forConditionhbs.addEventListener('click', async e => {
+  e.preventDefault()
   if (e.target.id == 'submitToCondition') {
-    e.preventDefault()
-    let percent = Math.ceil(((counterOfCondition + 1) / 7) * 100)
+    if (discountCounter < 6)
+      discountCounter += 2
+    if (discountCounter >= ) {
+      discountCounter += 1
+    }
+    if (discountCounter == 12) {
+      discountCounter -= 2
+    }
+    let percent = (percentCounter += 14)
     progressBar.style.cssText = `width: ${percent}%`
+    progressBar.innerText = `${percent}%`
+    condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
     if (counterOfCondition == 3) {
       //прогресс бар на некоторые вопросы
       //отрисовка другой хбс
