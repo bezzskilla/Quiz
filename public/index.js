@@ -8,6 +8,16 @@ let forConditionhbs = document.querySelector('#forConditionhbs')
 let progressBar = document.getElementById('condProgressBar')
 let condDiscountBadge = document.getElementById('condDiscountBadge')
 
+let answerOfUser = {
+  email: String,
+  phone: String,
+  answers: [{
+    question: String,
+    answers: Array,
+  }],
+};
+let neededArr = [];
+
 let counterOfCondition = 0;
 let allQustionOfCondition = null
 let answerOfUser = { name: '', phone: '', answers: [] }
@@ -15,7 +25,7 @@ let discountCounter = 0;
 let percentCounter = 12;
 
 if (conditionButton) {
-  conditionButton.addEventListener('click', async e => {
+  conditionButton.addEventListener('click', async (e) => {
     conditionButton.style.cssText = 'display: none;';
     dialogAboutCondition.style.cssText = 'display: flex';
     dialogAboutCondition.show(); //показываем диалоговое окно кондиционеров
@@ -57,9 +67,9 @@ forConditionhbs.addEventListener('click', async e => {
         let template = Handlebars.compile(endHBShtml);
         let html = template();
         counterOfCondition = 0;
+        answerOfUser.answers.shift();
         console.log(counterOfCondition)
         forConditionhbs.innerHTML = html;
-
         console.log('конец')
         return
       }
@@ -69,6 +79,22 @@ forConditionhbs.addEventListener('click', async e => {
         let template = Handlebars.compile(HBShtml);
         let html = template({ question: allQustionOfCondition[counterOfCondition].question, arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers });
         console.log(counterOfCondition)
+        // -----------------------------------запись ответов
+        const question = document.getElementById('main').children[0];
+        const ul = document.getElementById('answers').children;
+        const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
+         neededArr = [];
+         for (let i = 0; i < arrOfAnwers.length; i += 1) {
+        if (arrOfAnwers[i].checked) {
+          neededArr.push(arrOfAnwers[i].value);
+        }
+      }
+      answerOfUser.answers.push({
+        question: question.innerText,
+        answers: neededArr,
+      });
+      console.log(answerOfUser);
+      // -----------------------------------запись ответов
         counterOfCondition++;
         forConditionhbs.innerHTML = html;
       }
@@ -77,26 +103,34 @@ forConditionhbs.addEventListener('click', async e => {
 }
 
 if (closeDialogAboutCondition) {
-  closeDialogAboutCondition.addEventListener('click', async e => {
+  closeDialogAboutCondition.addEventListener('click', async (e) => {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
     counterOfCondition = 0;
-    console.log(counterOfCondition)
-    allQustionOfCondition = null
-    dialogAboutCondition.close() //прячем диалоговое окно кондиционеров
-  })
+    // console.log(counterOfCondition);
+    allQustionOfCondition = null;
+    answerOfUser = {
+      email: String,
+      phone: String,
+      answers: [{
+        question: String,
+        answers: Array,
+      }]
+    };
+    dialogAboutCondition.close(); // прячем диалоговое окно кондиционеров
+  });
 }
+
 
 let forVentilationhbs = document.querySelector('#forVentilationhbs')
 let counterOfVentilation = 0
 let allQustionOfVentilation = null
 
 if (ventilationButton) {
-  ventilationButton.addEventListener('click', async e => {
+  ventilationButton.addEventListener('click', async (e) => {
     ventilationButton.style.cssText = 'display: none;';
     dialogAboutVentilation.style.cssText = 'display: flex';
     dialogAboutVentilation.show(); //показываем диалоговое окно вентиляции
-
     const response = await fetch('/ventilation/question')
     const resp = await response.json()
     allQustionOfVentilation = resp
@@ -142,11 +176,11 @@ if (forVentilationhbs) {
   })
 }
 if (closeDialogAboutVentilation) {
-  closeDialogAboutVentilation.addEventListener('click', async e => {
+  closeDialogAboutVentilation.addEventListener('click', async (e) => {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
     allQustionOfVentilation = null;
     counterOfVentilation = 0;
     dialogAboutVentilation.close() //прячем диалоговое окно вентиляции
-  })
+  });
 }
