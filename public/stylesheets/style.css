@@ -7,7 +7,7 @@
 }
 #dialogAboutCondition,#dialogAboutVentilation {
   width: 70%;
-  height: 400px;
+  height: 60%;
   margin: 10% 15% 15% 15%;
   border: 1px solid #3B72B4;;
   border-radius: 6px;
@@ -24,21 +24,27 @@
   background-color: crimson;
 }
 
-#progressBar {
+#progressBar, #condProgressBar {
   background-color: #3B72B4;
 }
 
-#progress {
+#progress, #condProgress {
   align-self: flex-end;
-  width: 650px;
-  overflow: hidden;
-  float: left;
+  width: 90%;
+  background-color: aliceblue;
+  border: 1px solid #3B72B4;
+  /* overflow: hidden; */
+  /* float: left; */
 
 }
 
-#discountBadge {
-  height: 50px;
+#discountBadge, #condDiscountBadge {
+  height: 20px;
   width: auto;
-
+  border: 1px solid #3B72B4;
+  margin-top:1%;
+  margin-right: 2%;
 }
+
+
 
