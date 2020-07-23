@@ -14,7 +14,17 @@ router
   })
   .get('/questionNext', async (req, res) => {
     // await UserModel.updateOne({ _id: "какое то айди" }, { "апдейченный ответ"});
-    res.json({ isOkey: "okey" });
+    res.json({ isOkey: 'okey' });
+  })
+  .post('/final', async (req, res) => {
+    const info = req.body;
+    const user = new UserModel({
+      email,
+      phone,
+      answers,
+    });
+    await user.save();
+    res.json();
   });
 
 module.exports = router;
