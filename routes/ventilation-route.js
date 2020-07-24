@@ -36,7 +36,7 @@ router
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
     let parsedAnswers = '';
-    answers.forEach(el => {
+    answers.forEach((el,i) => {
       parsedAnswers +=`${i+1}:  `+ el.question + '\n   Ответ:' + el.answers + '\n';
     });
     if (email.length > 0) {
