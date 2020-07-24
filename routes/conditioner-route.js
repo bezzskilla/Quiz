@@ -35,12 +35,12 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
-    let parsedAnswers = '';
-    answers.forEach(el => {
-      parsedAnswers += el.question + '\n' + el.answers + '\n';
-    });
+    let parsedAnswers = ''
+    answers.forEach((el,i) => {
+      parsedAnswers +=`${i+1}:`   +el.question + '\n   Ответ:' + el.answers + '\n'
+    })
     if (email.length > 0) {
-      fs.writeFile('./info.txt', `${email} \n ${phone} \n  ${parsedAnswers}`, (error) => {
+      fs.writeFile('./info.txt', `\nEmail:   ${email} \n\nPhone:   ${phone} \n\n${parsedAnswers}`, (error) => {
         if (error) {
           throw console.error();
         }
@@ -62,8 +62,7 @@ router
       res.json(user);
     }
     else {
-      console.log(email, phone, answers);
-      fs.writeFile('./info.txt', `${phone} \n  ${parsedAnswers}`, (error) => {
+      fs.writeFile('./info.txt', `Phone:   ${phone} \n\n${parsedAnswers}`, (error) => {
         if (error) {
           throw console.error();
         }
