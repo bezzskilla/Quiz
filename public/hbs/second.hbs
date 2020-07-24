@@ -4,7 +4,7 @@
     <form id="quizConditionForm">
       <ul id="answers">
         {{#each arrAnswers}}
-        <li class="answers"><input type="checkbox" name="{{this}}" value="{{this}}" class="checkBox"> {{this}}</li>
+        <li class="answers"><input type="radio" name="chooseOne" value="{{this}}" class="checkBox"> {{this}}</li>
         {{/each}}
       </ul>
     </form>

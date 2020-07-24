@@ -28,7 +28,7 @@ if (ventilationButton) {
     const response = await fetch('/ventilation/question');
     const resp = await response.json();
     allQustionOfVentilation = resp;
-    const hbsresponce = await fetch('/hbs/first.hbs');
+    const hbsresponce = await fetch('/hbs/second.hbs');
     const HBShtml = await hbsresponce.text();
     const template = Handlebars.compile(HBShtml);
     const html = template({
@@ -55,6 +55,33 @@ if (forVentilationhbs) {
         ventDiscountCounter += 1
       }
       ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
+      if (counterOfVentilation == 2 || counterOfVentilation == 3 || counterOfVentilation == 4 || counterOfVentilation == 5 || counterOfVentilation == 6 || counterOfVentilation == 7) {
+        const hbsresponce = await fetch('/hbs/second.hbs');
+        const HBShtml = await hbsresponce.text();
+        const template = Handlebars.compile(HBShtml);
+        const html = template({
+          question: allQustionOfVentilation[counterOfVentilation].question,
+          arrAnswers: allQustionOfVentilation[counterOfVentilation].arrAnswers,
+        });
+        // -----------------------------------запись ответов
+        const question = document.getElementById('main').children[0];
+        const ul = document.getElementById('answers').children;
+        const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
+        ventilationNeededArr = [];
+        for (let i = 0; i < arrOfAnwers.length; i += 1) {
+          if (arrOfAnwers[i].checked) {
+            ventilationNeededArr.push(arrOfAnwers[i].parentElement.innerText);
+          }
+        }
+        ventilationAnswerOfUser.answers.push({
+          question: question.innerText,
+          answers: ventilationNeededArr,
+        });
+        // -----------------------------------запись ответов
+        counterOfVentilation += 1;
+        forVentilationhbs.innerHTML = html;
+        return
+      }
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs');
         const endHBShtml = await endResponce.text();
@@ -115,7 +142,7 @@ if (forVentilationhbs) {
       // })
       const userInfoForm = document.getElementById('userInfoVent');
       if (userInfoForm.children[2].value.length < 11) {
-        alert('вы ввели неправильные данные\n Запишите телефон в указанном формате');
+        alert('Вы ввели неправильные данные\n Запишите телефон в указанном формате');
       }
       else {
         ventProgressBar.style.cssText = 'width: 100%';
@@ -150,8 +177,8 @@ if (forVentilationhbs) {
       ventPercentCounter = 8;
       ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
       ventProgressBar.innerText = '';
-      ventDiscountCounter = 0
-      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
+      ventDiscountCounter = 0;
+      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
       allQustionOfVentilation = null;
       ventilationAnswerOfUser = {
         email: String,
@@ -174,8 +201,8 @@ if (closeDialogAboutVentilation) {
     ventPercentCounter = 8;
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
     ventProgressBar.innerText = '';
-    ventDiscountCounter = 0
-    ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
+    ventDiscountCounter = 0;
+    ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
     allQustionOfVentilation = null;
     ventilationAnswerOfUser = {
       email: String,
