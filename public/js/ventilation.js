@@ -2,7 +2,7 @@ const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
 const ventProgressBar = document.getElementById('progressBar');
-const condDiscountBadge = document.getElementById('condDiscountBadge');
+// const condDiscountBadge = document.getElementById('condDiscountBadge');
 const forVentilationhbs = document.querySelector('#forVentilationhbs');
 const ventDiscountBadge = document.getElementById('ventDiscountBadge');
 let counterOfVentilation = 0;
@@ -150,7 +150,8 @@ if (forVentilationhbs) {
       ventPercentCounter = 8;
       ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
       ventProgressBar.innerText = '';
-      ventDiscountBadge.innerText = `Ваша скидка: 0%`
+      ventDiscountCounter = 0;
+      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
       allQustionOfVentilation = null;
       ventilationAnswerOfUser = {
         email: String,
@@ -173,7 +174,8 @@ if (closeDialogAboutVentilation) {
     ventPercentCounter = 8;
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
     ventProgressBar.innerText = '';
-    ventDiscountBadge.innerText = `Ваша скидка: 0%`
+    ventDiscountCounter = 0;
+    ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
     allQustionOfVentilation = null;
     ventilationAnswerOfUser = {
       email: String,
