@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
-const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js')
-
-
-const connectionAddress = `mongodb+srv://Quiz:Quiz123@cluster0.bywip.mongodb.net/Quiz?retryWrites=true&w=majority`
-
-mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.pluralize(null);
+const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js');
 
 
 
