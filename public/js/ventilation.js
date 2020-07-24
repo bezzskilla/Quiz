@@ -111,7 +111,7 @@ if (forVentilationhbs) {
         ventProgressBar.style.cssText = 'width: 100%';
         ventProgressBar.innerText = '100%';
         answerOfUser1.phone = userInfoForm.children[2].value;
-        answerOfUser1.email = userInfoForm.children[5].value;
+        answerOfUser1.email = userInfoForm.children[6].value;
         const responce = await fetch('/ventilation/final', {
           method: "POST",
           headers: {

@@ -129,14 +129,14 @@ if (forConditionhbs) {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const userInfoForm = document.getElementById('userInfoCond');
-      if (userInfoForm.children[1].value.length < 11) {
+      if (userInfoForm.children[2].value.length < 11) {
         alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
       }
       else {
         condProgressBar.style.cssText = 'width: 100%'
         condProgressBar.innerText = '100%'
         answerOfUser.phone = userInfoForm.children[2].value;
-        answerOfUser.email = userInfoForm.children[5].value; // было 5, сделал 3
+        answerOfUser.email = userInfoForm.children[6].value;
         const responce = await fetch('/conditioner/final', {
           method: 'POST',
           headers: {
