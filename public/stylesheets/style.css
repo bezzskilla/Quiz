@@ -1,9 +1,14 @@
-#conditionButton,
-#ventilationButton {
+body{
+  margin: 0;
+  background-image: url(/img/background.png);
+  background-size: 100%;
+}
+
+#conditionButton, #ventilationButton {
   position: fixed;
-  margin-left: 50px;
-  bottom: 100px;
-  background-color: #3b72b4;
+  margin-left: 5%;
+  bottom: 10%;
+  background-color: #3B72B4;
 }
 #dialogAboutCondition,
 #dialogAboutVentilation {
@@ -15,6 +20,7 @@
   background-color: aliceblue;
   display: none;
   position: fixed;
+  z-index: 1000;
 }
 
 #closeDialogAboutCondition,
@@ -22,21 +28,20 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  border: 1px solid crimson;
+  background-color: rgb(228, 100, 6);
   border-radius: 5px;
-  background-color: crimson;
+  background-color: rgb(228, 100, 6);
 }
 
-#progressBar,
-#condProgressBar {
-  background-color: #3b72b4;
+#progressBar, #condProgressBar {
+  background-color: #3B72B4;
   /* position: fixed; */
 }
 
 #progress,
 #condProgress {
   align-self: flex-end;
-  margin-left: 100px;
+  margin-left: 8%;
   width: 50%;
   background-color: aliceblue;
   border: 1px solid #3b72b4;
@@ -45,15 +50,17 @@
   /* float: left; */
 }
 
-#ventDiscountBadge,
-#condDiscountBadge {
-  height: 20px;
+#ventDiscountBadge, #condDiscountBadge {
+  align-self: flex-end;
+  height: 29px;
   width: auto;
   border: 1px solid #3b72b4;
   position: fixed;
-  margin-left: 55%;
-  margin-top: 1%;
+  margin-left: 20%;
+  margin-top: -2%;
   margin-right: 2%;
+  font-size: medium;
+  text-align: center;
 }
 
 .answers {
@@ -64,6 +71,7 @@
   margin-right: 7px;
   padding-left: 30px;
   list-style-type: none;
+  
 }
 
 .question {
@@ -72,13 +80,12 @@
 
 .checkBox {
   margin: 0px 10px;
+  background-color: #3B72B4
 }
 
-#submitToCondition,
-#lastBtnVent,
-#lastBtnCond,
-#close {
-  background-color: #3b72b4;
+#submitToCondition, #lastBtnVent, #lastBtnCond, #close {
+  background-color: #3B72B4;
+  border-radius: 33px;
   /* position: relative;
   margin-left: 60%;
   margin-top:17%;
@@ -90,13 +97,10 @@
   margin-top: 7px;
 }
 
-#mailInput,
-#secondMailInput,
-#phoneInput,
-#secondPhoneInput {
+#mailInput, #secondMailInput, #phoneInput, #secondPhoneInput {
   margin-bottom: 4px;
   margin-left: 2px;
-  border: 1px solid #3b72b4;
+  border: 1px solid #3B72B4;
 }
 
 #questions {
@@ -112,7 +116,6 @@
 #close {
   margin-left: 63%;
 }
-
 /* @media (max-width: 767px) {
   #dialogAboutCondition,
   #dialogAboutVentilation {
