@@ -6,6 +6,7 @@ const logger = require('morgan');
 // const session = require('express-session');
 // const FileStore = require('session-file-store')(session);
 const mongoose = require('mongoose');
+const dotenv = require('dotenv').config()
 
 const conditionerRoute = require('./routes/conditioner-route');
 const ventilationRoute = require('./routes/ventilation-route');
