@@ -59,7 +59,11 @@ if (forConditionhbs) {
         // const polzResponce = await fetch('/hbs/polzunok.hbs')
         // let polzHBShtml = await polzResponce.text();
         // let template = Handlebars.compile(polzHBShtml);
-        // let html = template();
+        // let html = template({
+        //   question: allQustionOfCondition[counterOfCondition].question,
+        //   min: allQustionOfCondition[counterOfCondition].arrAnswers[0],
+        //   max: allQustionOfCondition[counterOfCondition].arrAnswers[1]
+        // });
         // counterOfCondition++;
         // console.log(counterOfCondition)
         // forConditionhbs.innerHTML = html;

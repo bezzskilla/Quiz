@@ -1,7 +1,7 @@
 <div id="main">
   <p>{{question}}</p>
   <form id="quizConditionForm">
-    <input id="ex1" data-slider-id="ex1Slider" type="text" data-slider-min={{min}} data-slider-max={{max}}
-      data-slider-step="1" data-slider-value="14" />
+    <input id="ex1" type="range" min={{min}} max={{max}} step="1" />
   </form>
+  <input id="submitToCondition" type="submit" value="Отправить" class="btn btn-primary btn-sm">
 </div>
