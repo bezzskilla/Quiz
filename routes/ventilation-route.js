@@ -1,8 +1,9 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv').config();
+const fs = require('fs');
 const { UserModel, VentilationModel } = require('../models/mongoose');
-const nodemailer = require('nodemailer')
-const dotenv = require('dotenv').config()
-const fs = require('fs')
+
 const router = express.Router();
 
 let transporter = nodemailer.createTransport({
@@ -11,8 +12,8 @@ let transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: `${process.env.DATABASE_EMAIL}`,
-    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`
-  }
+    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`,
+  },
 });
 
 let send = {
@@ -21,8 +22,8 @@ let send = {
   subject: 'Новый клиент!',
   attachments: [
     { filename: 'info.txt', path: './info.txt' },
-  ]
-}
+  ],
+};
 
 router
   .get('/', (req, res) => {
@@ -34,24 +35,24 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
-    let parsedAnswers = ''
+    let parsedAnswers = '';
     answers.forEach(el => {
-      parsedAnswers +=`${i+1}:  `+ el.question + '\n   Ответ:' + el.answers + '\n'
-    })
+      parsedAnswers +=`${i+1}:  `+ el.question + '\n   Ответ:' + el.answers + '\n';
+    });
     if (email.length > 0) {
       fs.writeFile('./info.txt', `\nEmail:   ${email} \n\nPhone:   ${phone} \n\n${parsedAnswers}`, (error) => {
         if (error) {
           throw console.error();
         }
-      })
+      });
       transporter.sendMail(send, function (error, info) {
         if (error) {
-          console.log(error)
+          console.log(error);
         }
         else {
           console.log('email sent ' + info.response);
         }
-      })
+      });
       const user = new UserModel({
         email,
         phone,
@@ -66,21 +67,21 @@ router
         if (error) {
           throw console.error();
         }
-      })
+      });
       transporter.sendMail(send, function (error, info) {
         if (error) {
-          console.log(error)
+          console.log(error);
         }
         else {
           console.log('email sent ' + info.response);
         }
-      })
+      });
       const user = new UserModel({
         phone,
         answers,
       });
       await user.save();
-      res.json(user)
+      res.json(user);
     }
   });
 
