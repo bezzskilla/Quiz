@@ -10,11 +10,12 @@ body{
   bottom: 10%;
   background-color: #3B72B4;
 }
-#dialogAboutCondition,#dialogAboutVentilation {
+#dialogAboutCondition,
+#dialogAboutVentilation {
   width: 70%;
   height: 60%;
   margin: 10% 15% 15% 15%;
-  border: 1px solid #3B72B4;;
+  border: 1px solid #3b72b4;
   border-radius: 6px;
   background-color: aliceblue;
   display: none;
@@ -22,7 +23,8 @@ body{
   z-index: 1000;
 }
 
-#closeDialogAboutCondition, #closeDialogAboutVentilation {
+#closeDialogAboutCondition,
+#closeDialogAboutVentilation {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -33,27 +35,26 @@ body{
 
 #progressBar, #condProgressBar {
   background-color: #3B72B4;
-
   /* position: fixed; */
 }
 
-#progress, #condProgress {
+#progress,
+#condProgress {
   align-self: flex-end;
   margin-left: 8%;
   width: 50%;
   background-color: aliceblue;
-  border: 1px solid #3B72B4;
+  border: 1px solid #3b72b4;
   position: fixed;
   /* overflow: hidden; */
   /* float: left; */
-
 }
 
 #ventDiscountBadge, #condDiscountBadge {
   align-self: flex-end;
   height: 29px;
   width: auto;
-  border: 1px solid #3B72B4;
+  border: 1px solid #3b72b4;
   position: fixed;
   margin-left: 20%;
   margin-top: -2%;
@@ -74,7 +75,7 @@ body{
 }
 
 .question {
-white-space: nowrap;
+  white-space: nowrap;
 }
 
 .checkBox {
@@ -90,11 +91,11 @@ white-space: nowrap;
   margin-top:17%;
   margin-right: 2%; */
 }
-#lastBtnVent, #lastBtnCond, #close {
-margin-top: 7px;
+#lastBtnVent,
+#lastBtnCond,
+#close {
+  margin-top: 7px;
 }
-
-
 
 #mailInput, #secondMailInput, #phoneInput, #secondPhoneInput {
   margin-bottom: 4px;
@@ -107,13 +108,17 @@ margin-top: 7px;
 }
 
 #farewellWindow {
+  display: flex;
   margin-top: 10%;
+  margin-left: 70%;
 
-  text-align: center;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 70%;
 }
 
 #close {
-  margin-left: 63%;
+  margin-left: 78%;
 }
 
 
