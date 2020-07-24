@@ -173,7 +173,8 @@ if (forConditionhbs) {
       condPercentCounter = 8;
       condProgressBar.style.cssText = `width: ${condPercentCounter}`
       condProgressBar.innerText = ''
-      condDiscountBadge.innerText = `Ваша скидка: 0%`
+      discountCounter = 0
+      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
@@ -197,7 +198,8 @@ if (closeDialogAboutCondition) {
     condPercentCounter = 8;
     condProgressBar.style.cssText = `width: ${condPercentCounter}`
     condProgressBar.innerText = ''
-    condDiscountBadge.innerText = `Ваша скидка: 0%`
+    discountCounter = 0
+    condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
