@@ -3,7 +3,7 @@ const dialogAboutCondition = document.querySelector('#dialogAboutCondition');
 const closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition');
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const condProgressBar = document.getElementById('condProgressBar');
-const condDiscountBadge = document.getElementById('condDiscountBadge')
+const condDiscountBadge = document.getElementById('condDiscountBadge');
 
 let conditionAnswerOfUser = {
   email: String,
@@ -42,17 +42,17 @@ if (conditionButton) {
 }
 if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
-    if (e.target.id == 'submitToCondition') {
+    if (e.target.id === 'submitToCondition') {
       e.preventDefault();
       if (discountCounter < 4)
-        discountCounter += 2
+        discountCounter += 2;
       if (discountCounter >= 4) {
-        discountCounter += 1
+        discountCounter += 1;
       }
-      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
-      let percent = (condPercentCounter += 12)
-      condProgressBar.style.cssText = `width: ${percent}%`
-      condProgressBar.innerText = `${percent}%`
+      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`;
+      let percent = (condPercentCounter += 12);
+      condProgressBar.style.cssText = `width: ${percent}%`;
+      condProgressBar.innerText = `${percent}%`;
       if (counterOfCondition === 1 || counterOfCondition === 2 || counterOfCondition === 4) {
         const hbsresponce = await fetch('/hbs/second.hbs');
         const HBShtml = await hbsresponce.text();
@@ -139,11 +139,11 @@ if (forConditionhbs) {
       // })
       const userInfoForm = document.getElementById('userInfoCond');
       if (userInfoForm.children[2].value.length < 11) {
-        alert("Вы ввели неправильные данные\n Запишите телефон в указанном формате")
+        alert("Вы ввели неправильные данные\n Запишите телефон в указанном формате");
       }
       else {
-        condProgressBar.style.cssText = 'width: 100%'
-        condProgressBar.innerText = '100%'
+        condProgressBar.style.cssText = 'width: 100%';
+        condProgressBar.innerText = '100%';
         conditionAnswerOfUser.phone = userInfoForm.children[2].value;
         conditionAnswerOfUser.email = userInfoForm.children[6].value;
         const responce = await fetch('/conditioner/final', {
@@ -170,10 +170,9 @@ if (forConditionhbs) {
       conditionButton.style.cssText = '';
       dialogAboutCondition.style.cssText = 'display: none;';
       condPercentCounter = 8;
-      condProgressBar.style.cssText = `width: ${condPercentCounter}`
-      condProgressBar.innerText = ''
-      discountCounter = 0
-      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
+      condProgressBar.style.cssText = `width: ${condPercentCounter}`;
+      condProgressBar.innerText = '';
+      condDiscountBadge.innerText = `Ваша скидка: 0%`;
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
@@ -195,10 +194,10 @@ if (closeDialogAboutCondition) {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
     condPercentCounter = 8;
-    condProgressBar.style.cssText = `width: ${condPercentCounter}`
-    condProgressBar.innerText = ''
-    discountCounter = 0
-    condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
+    condProgressBar.style.cssText = `width: ${condPercentCounter}`;
+    condProgressBar.innerText = '';
+    discountCounter = 0;
+    condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`;
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
