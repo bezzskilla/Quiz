@@ -1,7 +1,37 @@
 const express = require('express');
 const { UserModel, VentilationModel } = require('../models/mongoose');
-
+const nodemailer = require('nodemailer')
+const dotenv = require('dotenv').config()
+const fs = require('fs')
 const router = express.Router();
+
+let transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: `${process.env.EMAIL}`,
+    pass: `${process.env.EMAIL_PASSWORD}`
+  }
+});
+
+let send = {
+  from: '"Информация о клиентах" <getSplitInfo@gmail.com>',
+  to: 'Bezobazov1999@gmail.com',
+  subject: 'Новый клиент!',
+  attachments: [
+    { filename: 'info.txt', path: './info.txt' },
+  ]
+}
+
+transporter.sendMail(send, function (error, info) {
+  if (error) {
+    console.log(error)
+  }
+  else {
+    console.log('email sent ' + info.response);
+  }
+})
 
 router
   .get('/', (req, res) => {
