@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const conditionButton = document.querySelector('#conditionButton');
 const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutCondition = document.querySelector('#dialogAboutCondition');
@@ -159,7 +160,7 @@ if (forConditionhbs) {
       const html = template();
       forConditionhbs.innerHTML = html;
     }
-    if (e.target.id == "close") {
+    if (e.target.id == 'close') {
       e.preventDefault();
       conditionButton.style.cssText = '';
       dialogAboutCondition.style.cssText = 'display: none;';
@@ -283,30 +284,30 @@ if (forVentilationhbs) {
         forVentilationhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "lastBtnVent") {
+    if (e.target.id === 'lastBtnVent') {
       e.preventDefault();
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const responce = await fetch('/ventilation/final', {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: answerOfUser.email,
           phone: answerOfUser.phone,
           answers: answerOfUser.answers,
         }),
-      })
-      const resp = await responce.json()
-      const lastResponce = await fetch('/hbs/thx.hbs')
+      });
+      const resp = await responce.json();
+      const lastResponce = await fetch('/hbs/thx.hbs');
       const lastText = await lastResponce.text();
       const template = Handlebars.compile(lastText);
       const html = template();
       forVentilationhbs.innerHTML = html;
     }
-    if (e.target.id == "close") {
+    if (e.target.id === 'close') {
       e.preventDefault();
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';

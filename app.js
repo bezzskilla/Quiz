@@ -1,10 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-// const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const session = require('express-session');
-// const FileStore = require('session-file-store')(session);
 const mongoose = require('mongoose');
 
 const conditionerRoute = require('./routes/conditioner-route');
@@ -27,15 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// SESSION
-// app.use(session({
-//   store: new FileStore(),
-//   key: 'user_sid',
-//   secret: 'kdjbvwlvhbwvjwbvrlwBVLKABVVALKVBAWLBVLIUv;LKNVWEAKJBVAJ NSLKVNWBF1234890',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { secret: false },
-// }));
 // ----------------------------------------------------------------------ROUTES
 app.use('/conditioner', conditionerRoute);
 app.use('/ventilation', ventilationRoute);
