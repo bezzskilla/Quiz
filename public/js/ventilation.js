@@ -16,7 +16,6 @@ let ventilationAnswerOfUser = {
   }],
 };
 let ventilationNeededArr = [];
-
 let ventPercentCounter = 8;
 
 if (ventilationButton) {
