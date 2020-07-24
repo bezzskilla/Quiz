@@ -1,15 +1,5 @@
-
 const mongoose = require('mongoose');
-const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js')
-
-
-// const connectionAddress = `mongodb+srv://Quiz:Quiz123@cluster0.bywip.mongodb.net/Quiz?retryWrites=true&w=majority`
-const connectionAddress = `mongodb+srv://Quiz:${process.env.DATABASE_EMAIL_PASSWORD}@cluster0.jsmw3.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
-// DATABASE_EMAIL_PASSWORD = condition228
-// mongodb+srv://Quiz:condition228@cluster0.jsmw3.mongodb.net/Quiz?retryWrites=true&w=majority
-
-mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.pluralize(null);
+const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js');
 
 
 
