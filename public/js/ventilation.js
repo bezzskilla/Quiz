@@ -1,14 +1,14 @@
 const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
-const ventProgressBar = document.getElementById('progressBar')
-
+const ventProgressBar = document.getElementById('progressBar');
+const condDiscountBadge = document.getElementById('condDiscountBadge');
 const forVentilationhbs = document.querySelector('#forVentilationhbs');
 const ventDiscountBadge = document.getElementById('ventDiscountBadge');
 let counterOfVentilation = 0;
 let allQustionOfVentilation = null;
 
-let answerOfUser1 = {
+let ventilationAnswerOfUser = {
   email: String,
   phone: String,
   answers: [{
@@ -16,7 +16,7 @@ let answerOfUser1 = {
     answers: Array,
   }],
 };
-let neededArr1 = [];
+let ventilationNeededArr = [];
 
 let ventDiscountCounter = 0;
 
@@ -66,18 +66,18 @@ if (forVentilationhbs) {
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
         const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
-        neededArr1 = [];
+        ventilationNeededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr1.push(arrOfAnwers[i].parentElement.innerText);
+            ventilationNeededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
-        answerOfUser1.answers.push({
+        ventilationAnswerOfUser.answers.push({
           question: question.innerText,
-          answers: neededArr1,
+          answers: ventilationNeededArr,
         });
         // -----------------------------------запись ответов
-        answerOfUser1.answers.shift();
+        ventilationAnswerOfUser.answers.shift();
         counterOfVentilation = 0;
         forVentilationhbs.innerHTML = html;
 
@@ -95,46 +95,47 @@ if (forVentilationhbs) {
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
         const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
-        neededArr1 = [];
+        ventilationNeededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr1.push(arrOfAnwers[i].parentElement.innerText);
+            ventilationNeededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
-        answerOfUser1.answers.push({
+        ventilationAnswerOfUser.answers.push({
           question: question.innerText,
-          answers: neededArr1,
+          answers: ventilationNeededArr,
         });
         // -----------------------------------запись ответов
         counterOfVentilation += 1;
         forVentilationhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "lastBtnVent") {
+    if (e.target.id === 'lastBtnVent') {
       e.preventDefault();
-      // answerOfUser.answers.forEach((el, i) => {
+      // ventilationAnswerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const userInfoForm = document.getElementById('userInfoVent');
       if (userInfoForm.children[2].value.length < 11) {
-        alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
+        alert('вы ввели неправильные данные\n Запишите телефон в указанном формате');
       }
       else {
         ventProgressBar.style.cssText = 'width: 100%';
         ventProgressBar.innerText = '100%';
-        answerOfUser1.phone = userInfoForm.children[2].value;
-        answerOfUser1.email = userInfoForm.children[6].value;
+        ventilationAnswerOfUser.phone = userInfoForm.children[2].value;
+        ventilationAnswerOfUser.email = userInfoForm.children[6].value;
         const responce = await fetch('/ventilation/final', {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: answerOfUser1.email,
-            phone: answerOfUser1.phone,
-            answers: answerOfUser1.answers,
+            email: ventilationAnswerOfUser.email,
+            phone: ventilationAnswerOfUser.phone,
+            answers: ventilationAnswerOfUser.answers,
           }),
-        })
+        });
+        console.log(ventilationAnswerOfUser);
         const resp = await responce.json();
         const lastResponce = await fetch('/hbs/thx.hbs');
         const lastText = await lastResponce.text();
@@ -143,7 +144,7 @@ if (forVentilationhbs) {
         forVentilationhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "close") {
+    if (e.target.id === 'close') {
       e.preventDefault();
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';
@@ -153,7 +154,7 @@ if (forVentilationhbs) {
       ventProgressBar.innerText = '';
       ventDiscountBadge.innerText = `Ваша скидка: 0%`
       allQustionOfVentilation = null;
-      answerOfUser1 = {
+      ventilationAnswerOfUser = {
         email: String,
         phone: String,
         answers: [{
@@ -171,12 +172,12 @@ if (closeDialogAboutVentilation) {
     dialogAboutVentilation.style.cssText = 'display: none;';
     ventilationButton.style.cssText = '';
     forVentilationhbs.innerHTML = '';
-    ventPercentCounter = 8
+    ventPercentCounter = 8;
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
     ventProgressBar.innerText = '';
     ventDiscountBadge.innerText = `Ваша скидка: 0%`
     allQustionOfVentilation = null;
-    answerOfUser1 = {
+    ventilationAnswerOfUser = {
       email: String,
       phone: String,
       answers: [{
