@@ -1,8 +1,9 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv').config();
+const fs = require('fs');
 const { UserModel, ConditionModel } = require('../models/mongoose');
-const nodemailer = require('nodemailer')
-const dotenv = require('dotenv').config()
-const fs = require('fs')
+
 const router = express.Router();
 
 let transporter = nodemailer.createTransport({
@@ -11,19 +12,18 @@ let transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: `${process.env.DATABASE_EMAIL}`,
-    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`
-  }
+    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`,
+  },
 });
-
 
 let send = {
   from: '"Информация о клиентах" <getSplitInfo@gmail.com>',
   to: 'Bezobazov1999@gmail.com',
   subject: 'Новый клиент!',
   attachments: [
-    { filename: 'info.txt', path: './txtFiles/info.txt' },
-  ]
-}
+    { filename: 'info.txt', path: './info.txt' },
+  ],
+};
 
 // let conditionMailSender = transporter.sendMail(send, function (error, info) {
 //   if (error) {
@@ -44,25 +44,25 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
-    let parsedAnswers = ''
+    let parsedAnswers = '';
     answers.forEach(el => {
-      parsedAnswers += el.question + '\n' + el.answers + '\n'
-    })
+      parsedAnswers += el.question + '\n' + el.answers + '\n';
+    });
     if (email.length > 0) {
       console.log(email, phone, answers);
       fs.writeFile('./info.txt', `${email} \n ${phone} \n  ${parsedAnswers}`, (error) => {
         if (error) {
           throw console.error();
         }
-      })
+      });
       transporter.sendMail(send, function (error, info) {
         if (error) {
-          console.log(error)
+          console.log(error);
         }
         else {
           console.log('email sent ' + info.response);
         }
-      })
+      });
       const user = new UserModel({
         email,
         phone,
@@ -77,21 +77,21 @@ router
         if (error) {
           throw console.error();
         }
-      })
+      });
       transporter.sendMail(send, function (error, info) {
         if (error) {
-          console.log(error)
+          console.log(error);
         }
         else {
           console.log('email sent ' + info.response);
         }
-      })
+      });
       const user = new UserModel({
         phone,
         answers,
       });
       await user.save();
-      res.json(user)
+      res.json(user);
     }
   });
 

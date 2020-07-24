@@ -150,8 +150,8 @@ if (forVentilationhbs) {
       ventPercentCounter = 8;
       ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
       ventProgressBar.innerText = '';
-      ventDiscountCounter = 0
-      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
+      ventDiscountCounter = 0;
+      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
       allQustionOfVentilation = null;
       ventilationAnswerOfUser = {
         email: String,
@@ -174,8 +174,8 @@ if (closeDialogAboutVentilation) {
     ventPercentCounter = 8;
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
     ventProgressBar.innerText = '';
-    ventDiscountCounter = 0
-    ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
+    ventDiscountCounter = 0;
+    ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`;
     allQustionOfVentilation = null;
     ventilationAnswerOfUser = {
       email: String,
