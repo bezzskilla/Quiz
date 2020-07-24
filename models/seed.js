@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { UserModel, VentilationModel, ConditionModel} = require('./mongoose.js')
+const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js')
 
 
 const connectionAddress = `mongodb+srv://Quiz:Quiz123@cluster0.bywip.mongodb.net/Quiz?retryWrites=true&w=majority`
@@ -24,7 +24,7 @@ async function createVentilationQuestions() {
     question: 'Какие из перечисленных проблем характерны для вашего помещения?',
     arrAnswers: [
       'Душно, не хватает воздуха',
-      'на стенках грибок, плесень',
+      'На стенках грибок, плесень',
       'Потеют, конденсируют, плачут окна',
       'Спертый/тяжелый воздух',
       'Нужна вентиляция в туалете и на кухне',
@@ -33,7 +33,7 @@ async function createVentilationQuestions() {
   })
 
   await VentilationModel.create({
-    question: 'У Вас в семье есть люди, страдающие аллергией, заболеваниями дыхательхы путей?',
+    question: 'У Вас в семье есть люди, страдающие аллергией, заболеваниями дыхательных путей?',
     arrAnswers: [
       'Да',
       'Нет',
@@ -41,7 +41,7 @@ async function createVentilationQuestions() {
   })
 
   await VentilationModel.create({
-    question: 'Сколько членов семьи проживают или планируется проживать в помещении?',
+    question: 'Сколько членов семьи проживают или планируют проживать в помещении?',
     arrAnswers: [
       '1-2',
       '3-4',
@@ -51,7 +51,7 @@ async function createVentilationQuestions() {
   })
 
   await VentilationModel.create({
-    question: 'Укажите количество жилых комнат',
+    question: 'Укажите количество жилых комнат:',
     arrAnswers: [
       '1',
       '2',
@@ -62,7 +62,7 @@ async function createVentilationQuestions() {
   })
 
   await VentilationModel.create({
-    question: 'Укажите высоту потолков',
+    question: 'Укажите высоту потолков:',
     arrAnswers: [
       'До 3 метров',
       '3-4 метра',
@@ -74,17 +74,17 @@ async function createVentilationQuestions() {
   await VentilationModel.create({
     question: 'Сколько квадратных метров на объекте?',
     arrAnswers: [
-      'До 40 м2',
-      'От 40 до 80 м2',
-      'От 80 до 150 м2',
-      'От 150 до 250 м2',
-      'От 250 до 400 м2',
-      'Более 400 м2'
+      'До 40 м²',
+      'От 40 до 80 м²',
+      'От 80 до 150 м²',
+      'От 150 до 250 м²',
+      'От 250 до 400 м²',
+      'Более 400 м²'
     ]
   })
 
   await VentilationModel.create({
-    question: 'Как срочно вам нужна вентиляция?',
+    question: 'Как срочно Вам нужна вентиляция?',
     arrAnswers: [
       'Как можно раньше',
       'В течение 1 недели ',
@@ -132,19 +132,19 @@ async function createConditionQuestions() {
   })
 
   await ConditionModel.create({
-    question: 'Укажите примерную площадь помещения',
+    question: 'Укажите примерную площадь помещения:',
     arrAnswers: [
-      '0-20',
-      '20-40',
-      '40-60',
-      '60-80',
-      '80-100',
-      'Более 100'
+      '0-20 м²',
+      '20-40 м²',
+      '40-60 м²',
+      '60-80 м²',
+      '80-100 м²',
+      'Более 100 м²'
     ]
   })
 
   await ConditionModel.create({
-    question: 'Ремонт сделан в помещении?',
+    question: 'Сделан ли в помещении ремонт?',
     arrAnswers: [
       'Да, ремонт сделан',
       'Нет, на этапе черновых работ',
@@ -155,7 +155,7 @@ async function createConditionQuestions() {
     question: 'Какие функции принципиальны при выборе кондиционера?',
     arrAnswers: [
       'Инвертор',
-      'Очичтка воздуха',
+      'Очистка воздуха',
       'Wi-fi модуль',
       'Цветной корпус'
     ]

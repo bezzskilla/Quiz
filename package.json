@@ -28,7 +28,7 @@
     "http-errors": "^1.8.0",
     "mongoose": "^5.9.25",
     "morgan": "^1.10.0",
-    "path": "^0.12.7",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
