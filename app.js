@@ -12,8 +12,6 @@ const mainRoute = require('./routes/main-route');
 const app = express();
 // Подключаем mongoose.
 const connectionAddress = `mongodb+srv://Quiz:${process.env.DATABASE_EMAIL_PASSWORD}@cluster0.jsmw3.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
-console.log(connectionAddress);
-console.log('app22');
 mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.pluralize(null);
 
