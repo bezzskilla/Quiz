@@ -168,12 +168,8 @@ if (forConditionhbs) {
       dialogAboutCondition.style.cssText = 'display: none;';
       condPercentCounter = 8;
       condProgressBar.style.cssText = `width: ${condPercentCounter}`
-<<<<<<< HEAD
       condProgressBar.innerText = ''
       condDiscountBadge.innerText = `Ваша скидка: 0%`
-=======
-      condProgressBar.innerText = '';
->>>>>>> b019738a7ce9a1559151261aaa0ab3ef6dd4d12e
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
