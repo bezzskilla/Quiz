@@ -43,14 +43,25 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
-    console.log(email, phone, answers);
-    const user = new UserModel({
-      email,
-      phone,
-      answers,
-    });
-    await user.save();
-    res.json(user);
+    if (email.length > 0) {
+      console.log(email, phone, answers);
+      const user = new UserModel({
+        email,
+        phone,
+        answers,
+      });
+      await user.save();
+      res.json(user);
+    }
+    else {
+      console.log(email, phone, answers);
+      const user = new UserModel({
+        phone,
+        answers,
+      });
+      await user.save();
+      res.json(user)
+    }
   });
 
 module.exports = router;
