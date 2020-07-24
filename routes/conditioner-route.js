@@ -10,8 +10,8 @@ let transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: `${process.env.EMAIL}`,
-    pass: `${process.env.EMAIL_PASSWORD}`
+    user: `${process.env.DATABASE_EMAIL}`,
+    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`
   }
 });
 
@@ -20,7 +20,7 @@ let send = {
   to: 'Bezobazov1999@gmail.com',
   subject: 'Новый клиент!',
   attachments: [
-    { filename: 'info.txt', path: './info.txt' },
+    { filename: 'info.txt', path: './txtFiles/info.txt' },
   ]
 }
 
@@ -40,10 +40,6 @@ router
   .get('/question', async (req, res) => {
     const quiz = await ConditionModel.find();
     res.json(quiz);
-  })
-  .get('/questionNext', async (req, res) => {
-    // await UserModel.updateOne({ _id: "какое то айди" }, { "апдейченный ответ"});
-    res.json({ isOkey: 'okey' });
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
