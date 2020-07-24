@@ -160,7 +160,6 @@ if (forVentilationhbs) {
             answers: ventilationAnswerOfUser.answers,
           }),
         });
-        console.log(ventilationAnswerOfUser);
         const resp = await responce.json();
         const lastResponce = await fetch('/hbs/thx.hbs');
         const lastText = await lastResponce.text();
