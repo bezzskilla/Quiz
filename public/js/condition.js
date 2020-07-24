@@ -129,13 +129,13 @@ if (forConditionhbs) {
       // })
       const userInfoForm = document.getElementById('userInfoCond');
       if (userInfoForm.children[2].value.length < 11) {
-        alert('вы ввели неправильные данные\n Запишите телефон в указанном формате');
+        alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
       }
       else {
-        condProgressBar.style.cssText = 'width: 100%';
-        condProgressBar.innerText = '100%';
-        conditionAnswerOfUser.phone = userInfoForm.children[2].value;
-        conditionAnswerOfUser.email = userInfoForm.children[6].value; // было 5, сделал 6
+        condProgressBar.style.cssText = 'width: 100%'
+        condProgressBar.innerText = '100%'
+        answerOfUser.phone = userInfoForm.children[2].value;
+        answerOfUser.email = userInfoForm.children[6].value;
         const responce = await fetch('/conditioner/final', {
           method: 'POST',
           headers: {

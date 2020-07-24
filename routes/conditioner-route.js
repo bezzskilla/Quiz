@@ -44,8 +44,25 @@ router
   })
   .post('/final', async (req, res) => {
     const { email, phone, answers } = req.body;
+    let parsedAnswers = ''
+    answers.forEach(el => {
+      parsedAnswers += el.question + '\n' + el.answers + '\n'
+    })
     if (email.length > 0) {
       console.log(email, phone, answers);
+      fs.writeFile('./info.txt', `${email} \n ${phone} \n  ${parsedAnswers}`, (error) => {
+        if (error) {
+          throw console.error();
+        }
+      })
+      transporter.sendMail(send, function (error, info) {
+        if (error) {
+          console.log(error)
+        }
+        else {
+          console.log('email sent ' + info.response);
+        }
+      })
       const user = new UserModel({
         email,
         phone,
@@ -56,6 +73,19 @@ router
     }
     else {
       console.log(email, phone, answers);
+      fs.writeFile('./info.txt', `${phone} \n  ${parsedAnswers}`, (error) => {
+        if (error) {
+          throw console.error();
+        }
+      })
+      transporter.sendMail(send, function (error, info) {
+        if (error) {
+          console.log(error)
+        }
+        else {
+          console.log('email sent ' + info.response);
+        }
+      })
       const user = new UserModel({
         phone,
         answers,
