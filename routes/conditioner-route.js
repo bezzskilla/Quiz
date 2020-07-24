@@ -25,15 +25,6 @@ let send = {
   ]
 }
 
-// let conditionMailSender = transporter.sendMail(send, function (error, info) {
-//   if (error) {
-//     console.log(error)
-//   }
-//   else {
-//     console.log('email sent ' + info.response);
-//   }
-// })
-
 router
   .get('/', (req, res) => {
     res.render('condition');
@@ -49,7 +40,6 @@ router
       parsedAnswers += el.question + '\n' + el.answers + '\n'
     })
     if (email.length > 0) {
-      console.log(email, phone, answers);
       fs.writeFile('./info.txt', `${email} \n ${phone} \n  ${parsedAnswers}`, (error) => {
         if (error) {
           throw console.error();

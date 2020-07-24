@@ -29,7 +29,7 @@ if (conditionButton) {
     const response = await fetch('/conditioner/question');
     const resp = await response.json();
     allQustionOfCondition = resp;
-    const hbsresponce = await fetch('/hbs/first.hbs');
+    const hbsresponce = await fetch('/hbs/second.hbs');
     const HBShtml = await hbsresponce.text();
     const template = Handlebars.compile(HBShtml);
     const html = template({
@@ -53,33 +53,32 @@ if (forConditionhbs) {
       let percent = (condPercentCounter += 12)
       condProgressBar.style.cssText = `width: ${percent}%`
       condProgressBar.innerText = `${percent}%`
-      if (counterOfCondition === 3) {
-        // прогресс бар на некоторые вопросы
-        // отрисовка другой хбс
-        // const polzResponce = await fetch('/hbs/polzunok.hbs')
-        // let polzHBShtml = await polzResponce.text();
-        // let template = Handlebars.compile(polzHBShtml);
-        // let html = template({
-        //   question: allQustionOfCondition[counterOfCondition].question,
-        //   min: allQustionOfCondition[counterOfCondition].arrAnswers[0],
-        //   max: allQustionOfCondition[counterOfCondition].arrAnswers[1]
-        // });
-        // counterOfCondition++;
-        // console.log(counterOfCondition)
-        // forConditionhbs.innerHTML = html;
-        // return
-      }
-      if (counterOfCondition === 6) {
-        // прогресс бар на некоторые вопросы
-        // отрисовка другой хбс
-        // const polzResponce = await fetch('/hbs/polzunok.hbs')
-        // let polzHBShtml = await polzResponce.text();
-        // let template = Handlebars.compile(polzHBShtml);
-        // let html = template();
-        // counterOfCondition++;
-        // console.log(counterOfCondition)
-        // forConditionhbs.innerHTML = html;
-        // return
+      if (counterOfCondition === 1 || counterOfCondition === 2 || counterOfCondition === 4) {
+        const hbsresponce = await fetch('/hbs/second.hbs');
+        const HBShtml = await hbsresponce.text();
+        const template = Handlebars.compile(HBShtml);
+        const html = template({
+          question: allQustionOfCondition[counterOfCondition].question,
+          arrAnswers: allQustionOfCondition[counterOfCondition].arrAnswers,
+        });
+        // -----------------------------------запись ответов
+        const question = document.getElementById('main').children[0];
+        const ul = document.getElementById('answers').children;
+        const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
+        conditionNeededArr = [];
+        for (let i = 0; i < arrOfAnwers.length; i += 1) {
+          if (arrOfAnwers[i].checked) {
+            conditionNeededArr.push(arrOfAnwers[i].parentElement.innerText);
+          }
+        }
+        conditionAnswerOfUser.answers.push({
+          question: question.innerText,
+          answers: conditionNeededArr,
+        });
+        // -----------------------------------запись ответов
+        counterOfCondition += 1;
+        forConditionhbs.innerHTML = html;
+        return
       }
       if (counterOfCondition > allQustionOfCondition.length - 1) {
         const endResponce = await fetch('/hbs/endOfCondQuiz.hbs');
@@ -140,13 +139,13 @@ if (forConditionhbs) {
       // })
       const userInfoForm = document.getElementById('userInfoCond');
       if (userInfoForm.children[2].value.length < 11) {
-        alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
+        alert("Вы ввели неправильные данные\n Запишите телефон в указанном формате")
       }
       else {
         condProgressBar.style.cssText = 'width: 100%'
         condProgressBar.innerText = '100%'
-        answerOfUser.phone = userInfoForm.children[2].value;
-        answerOfUser.email = userInfoForm.children[6].value;
+        conditionAnswerOfUser.phone = userInfoForm.children[2].value;
+        conditionAnswerOfUser.email = userInfoForm.children[6].value;
         const responce = await fetch('/conditioner/final', {
           method: 'POST',
           headers: {
