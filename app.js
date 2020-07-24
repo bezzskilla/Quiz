@@ -11,7 +11,11 @@ const mainRoute = require('./routes/main-route');
 
 const app = express();
 // Подключаем mongoose.
-mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
+const connectionAddress = `mongodb+srv://Quiz:${process.env.DATABASE_EMAIL_PASSWORD}@cluster0.jsmw3.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`;
+console.log(connectionAddress);
+console.log('app22');
+mongoose.connect(connectionAddress, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.pluralize(null);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
