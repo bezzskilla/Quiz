@@ -2,8 +2,9 @@ const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
 const ventProgressBar = document.getElementById('progressBar')
-const condDiscountBadge = document.getElementById('condDiscountBadge');
+
 const forVentilationhbs = document.querySelector('#forVentilationhbs');
+const ventDiscountBadge = document.getElementById('ventDiscountBadge');
 let counterOfVentilation = 0;
 let allQustionOfVentilation = null;
 
@@ -16,6 +17,8 @@ let answerOfUser1 = {
   }],
 };
 let neededArr1 = [];
+
+let ventDiscountCounter = 0;
 
 let ventPercentCounter = 8;
 
@@ -45,6 +48,15 @@ if (forVentilationhbs) {
       let percent = (ventPercentCounter += 11)
       progressBar.style.cssText = `width: ${percent}%`
       progressBar.innerText = `${percent}%`
+      if (ventDiscountCounter == 0) {
+        ventDiscountCounter += 1
+      }
+      if (ventDiscountCounter < 4)
+        ventDiscountCounter += 1
+      if (ventDiscountCounter >= 4) {
+        ventDiscountCounter += 1
+      }
+      ventDiscountBadge.innerText = `Ваша скидка: ${ventDiscountCounter}%`
       if (counterOfVentilation > allQustionOfVentilation.length - 1) {
         const endResponce = await fetch('/hbs/endOfVentQuiz.hbs');
         const endHBShtml = await endResponce.text();
@@ -139,6 +151,7 @@ if (forVentilationhbs) {
       ventPercentCounter = 8;
       ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
       ventProgressBar.innerText = '';
+      ventDiscountBadge.innerText = `Ваша скидка: 0%`
       allQustionOfVentilation = null;
       answerOfUser1 = {
         email: String,
@@ -161,6 +174,7 @@ if (closeDialogAboutVentilation) {
     ventPercentCounter = 8
     ventProgressBar.style.cssText = `width: ${ventPercentCounter}`;
     ventProgressBar.innerText = '';
+    ventDiscountBadge.innerText = `Ваша скидка: 0%`
     allQustionOfVentilation = null;
     answerOfUser1 = {
       email: String,

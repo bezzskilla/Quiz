@@ -3,6 +3,7 @@ const dialogAboutCondition = document.querySelector('#dialogAboutCondition');
 const closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondition');
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const condProgressBar = document.getElementById('condProgressBar');
+const condDiscountBadge = document.getElementById('condDiscountBadge')
 
 let answerOfUser = {
   email: String,
@@ -17,7 +18,7 @@ let neededArr = [];
 let counterOfCondition = 0;
 let allQustionOfCondition = null;
 
-const discountCounter = 0;
+let discountCounter = 0;
 let condPercentCounter = 12;
 
 if (conditionButton) {
@@ -44,6 +45,12 @@ if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
     if (e.target.id == 'submitToCondition') {
       e.preventDefault();
+      if (discountCounter < 4)
+        discountCounter += 2
+      if (discountCounter >= 4) {
+        discountCounter += 1
+      }
+      condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
       let percent = (condPercentCounter += 12)
       condProgressBar.style.cssText = `width: ${percent}%`
       condProgressBar.innerText = `${percent}%`
@@ -163,6 +170,7 @@ if (forConditionhbs) {
       condPercentCounter = 8
       condProgressBar.style.cssText = `width: ${condPercentCounter}`
       condProgressBar.innerText = ''
+      condDiscountBadge.innerText = `Ваша скидка: 0%`
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
@@ -186,6 +194,7 @@ if (closeDialogAboutCondition) {
     condPercentCounter = 8
     condProgressBar.style.cssText = `width: ${condPercentCounter}`
     condProgressBar.innerText = ''
+    condDiscountBadge.innerText = `Ваша скидка: 0%`
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
