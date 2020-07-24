@@ -15,6 +15,7 @@ let transporter = nodemailer.createTransport({
   }
 });
 
+
 let send = {
   from: '"Информация о клиентах" <getSplitInfo@gmail.com>',
   to: 'Bezobazov1999@gmail.com',
@@ -24,14 +25,14 @@ let send = {
   ]
 }
 
-transporter.sendMail(send, function (error, info) {
-  if (error) {
-    console.log(error)
-  }
-  else {
-    console.log('email sent ' + info.response);
-  }
-})
+// let conditionMailSender = transporter.sendMail(send, function (error, info) {
+//   if (error) {
+//     console.log(error)
+//   }
+//   else {
+//     console.log('email sent ' + info.response);
+//   }
+// })
 
 router
   .get('/', (req, res) => {

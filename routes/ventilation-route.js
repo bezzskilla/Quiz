@@ -10,8 +10,8 @@ let transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: `${process.env.EMAIL}`,
-    pass: `${process.env.EMAIL_PASSWORD}`
+    user: `${process.env.DATABASE_EMAIL}`,
+    pass: `${process.env.DATABASE_EMAIL_PASSWORD}`
   }
 });
 
@@ -24,14 +24,14 @@ let send = {
   ]
 }
 
-transporter.sendMail(send, function (error, info) {
-  if (error) {
-    console.log(error)
-  }
-  else {
-    console.log('email sent ' + info.response);
-  }
-})
+// let ventilationMailSender = transporter.sendMail(send, function (error, info) {
+//   if (error) {
+//     console.log(error)
+//   }
+//   else {
+//     console.log('email sent ' + info.response);
+//   }
+// })
 
 router
   .get('/', (req, res) => {
