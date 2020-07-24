@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const conditionButton = document.querySelector('#conditionButton');
 const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutCondition = document.querySelector('#dialogAboutCondition');
@@ -174,7 +175,7 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "close") {
+    if (e.target.id == 'close') {
       e.preventDefault();
       conditionButton.style.cssText = '';
       dialogAboutCondition.style.cssText = 'display: none;';
@@ -313,7 +314,7 @@ if (forVentilationhbs) {
         forVentilationhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "lastBtnVent") {
+    if (e.target.id === 'lastBtnVent') {
       e.preventDefault();
       // answerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
@@ -346,7 +347,7 @@ if (forVentilationhbs) {
         forVentilationhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "close") {
+    if (e.target.id === 'close') {
       e.preventDefault();
       dialogAboutVentilation.style.cssText = 'display: none;';
       ventilationButton.style.cssText = '';

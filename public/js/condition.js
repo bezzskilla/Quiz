@@ -4,7 +4,7 @@ const closeDialogAboutCondition = document.querySelector('#closeDialogAboutCondi
 const forConditionhbs = document.querySelector('#forConditionhbs');
 const condProgressBar = document.getElementById('condProgressBar');
 
-let answerOfUser = {
+let conditionAnswerOfUser = {
   email: String,
   phone: String,
   answers: [{
@@ -12,7 +12,7 @@ let answerOfUser = {
     answers: Array,
   }],
 };
-let neededArr = [];
+let conditionNeededArr = [];
 
 let counterOfCondition = 0;
 let allQustionOfCondition = null;
@@ -36,7 +36,6 @@ if (conditionButton) {
       arrAnswers: resp[counterOfCondition].arrAnswers,
     });
     counterOfCondition += 1;
-    console.log(counterOfCondition);
     forConditionhbs.innerHTML = html;
   });
 }
@@ -80,18 +79,18 @@ if (forConditionhbs) {
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
         const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
-        neededArr = [];
+        conditionNeededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].parentElement.innerText);
+            conditionNeededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
-        answerOfUser.answers.push({
+        conditionAnswerOfUser.answers.push({
           question: question.innerText,
-          answers: neededArr,
+          answers: conditionNeededArr,
         });
         // -----------------------------------запись ответов
-        answerOfUser.answers.shift();
+        conditionAnswerOfUser.answers.shift();
         counterOfCondition = 0;
         forConditionhbs.innerHTML = html;
         return;
@@ -108,24 +107,24 @@ if (forConditionhbs) {
         const question = document.getElementById('main').children[0];
         const ul = document.getElementById('answers').children;
         const arrOfAnwers = Array.from(ul).map((element) => element.firstElementChild);
-        neededArr = [];
+        conditionNeededArr = [];
         for (let i = 0; i < arrOfAnwers.length; i += 1) {
           if (arrOfAnwers[i].checked) {
-            neededArr.push(arrOfAnwers[i].parentElement.innerText);
+            conditionNeededArr.push(arrOfAnwers[i].parentElement.innerText);
           }
         }
-        answerOfUser.answers.push({
+        conditionAnswerOfUser.answers.push({
           question: question.innerText,
-          answers: neededArr,
+          answers: conditionNeededArr,
         });
         // -----------------------------------запись ответов
         counterOfCondition += 1;
         forConditionhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "lastBtnCond") {
+    if (e.target.id === 'lastBtnCond') {
       e.preventDefault();
-      // answerOfUser.answers.forEach((el, i) => {
+      // conditionAnswerOfUser.answers.forEach((el, i) => {
       //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
       // })
       const userInfoForm = document.getElementById('userInfoCond');
@@ -143,9 +142,9 @@ if (forConditionhbs) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: answerOfUser.email,
-            phone: answerOfUser.phone,
-            answers: answerOfUser.answers,
+            email: conditionAnswerOfUser.email,
+            phone: conditionAnswerOfUser.phone,
+            answers: conditionAnswerOfUser.answers,
           }),
         });
         const resp = await responce.json();
@@ -156,17 +155,17 @@ if (forConditionhbs) {
         forConditionhbs.innerHTML = html;
       }
     }
-    if (e.target.id == "close") {
+    if (e.target.id === 'close') {
       e.preventDefault();
       conditionButton.style.cssText = '';
       dialogAboutCondition.style.cssText = 'display: none;';
-      condPercentCounter = 8
+      condPercentCounter = 8;
       condProgressBar.style.cssText = `width: ${condPercentCounter}`
-      condProgressBar.innerText = ''
+      condProgressBar.innerText = '';
       counterOfCondition = 0;
       allQustionOfCondition = null;
       forConditionhbs.innerHTML = '';
-      answerOfUser = {
+      conditionAnswerOfUser = {
         email: String,
         phone: String,
         answers: [{
@@ -183,13 +182,13 @@ if (closeDialogAboutCondition) {
   closeDialogAboutCondition.addEventListener('click', async (e) => {
     conditionButton.style.cssText = '';
     dialogAboutCondition.style.cssText = 'display: none;';
-    condPercentCounter = 8
+    condPercentCounter = 8;
     condProgressBar.style.cssText = `width: ${condPercentCounter}`
     condProgressBar.innerText = ''
     counterOfCondition = 0;
     allQustionOfCondition = null;
     forConditionhbs.innerHTML = '';
-    answerOfUser = {
+    conditionAnswerOfUser = {
       email: String,
       phone: String,
       answers: [{
