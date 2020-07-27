@@ -1,14 +1,15 @@
-body{
+body {
   margin: 0;
   background-image: url(/img/background.png);
   background-size: 100%;
 }
 
-#conditionButton, #ventilationButton {
+#conditionButton,
+#ventilationButton {
   position: fixed;
   margin-left: 5%;
   bottom: 10%;
-  background-color: #3B72B4;
+  background-color: #3b72b4;
 }
 #dialogAboutCondition,
 #dialogAboutVentilation {
@@ -33,8 +34,9 @@ body{
   background-color: rgb(228, 100, 6);
 }
 
-#progressBar, #condProgressBar {
-  background-color: #3B72B4;
+#progressBar,
+#condProgressBar {
+  background-color: #3b72b4;
   /* position: fixed; */
 }
 
@@ -50,7 +52,8 @@ body{
   /* float: left; */
 }
 
-#ventDiscountBadge, #condDiscountBadge {
+#ventDiscountBadge,
+#condDiscountBadge {
   align-self: flex-end;
   height: 29px;
   width: auto;
@@ -71,7 +74,6 @@ body{
   margin-right: 7px;
   padding-left: 30px;
   list-style-type: none;
-  
 }
 
 .question {
@@ -80,11 +82,15 @@ body{
 
 .checkBox {
   margin: 0px 10px;
-  background-color: #3B72B4
+  background-color: #3b72b4;
 }
 
-#submitToCondition, #lastBtnVent, #lastBtnCond, #close {
-  background-color: #3B72B4;
+#submitToCondition,
+#lastBtnVent,
+#lastBtnCond,
+#close,
+#skip {
+  background-color: #3b72b4;
   border-radius: 33px;
   /* position: relative;
   margin-left: 60%;
@@ -97,10 +103,13 @@ body{
   margin-top: 7px;
 }
 
-#mailInput, #secondMailInput, #phoneInput, #secondPhoneInput {
+#mailInput,
+#secondMailInput,
+#phoneInput,
+#secondPhoneInput {
   margin-bottom: 4px;
   margin-left: 2px;
-  border: 1px solid #3B72B4;
+  border: 1px solid #3b72b4;
 }
 
 #questions {
@@ -120,6 +129,3 @@ body{
 #close {
   margin-left: 78%;
 }
-
-
-

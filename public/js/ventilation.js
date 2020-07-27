@@ -41,7 +41,7 @@ if (ventilationButton) {
 }
 if (forVentilationhbs) {
   forVentilationhbs.addEventListener('click', async (e) => {
-    if (e.target.id === 'submitToCondition') {
+    if (e.target.id === 'submitToCondition' || e.target.id === 'skip') {
       e.preventDefault();
       let percent = (ventPercentCounter += 11)
       progressBar.style.cssText = `width: ${percent}%`
