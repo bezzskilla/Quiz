@@ -42,7 +42,7 @@ if (conditionButton) {
 }
 if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
-    if (e.target.id === 'submitToCondition') {
+    if (e.target.id === 'submitToCondition' || e.target.id === 'skip') {
       e.preventDefault();
       if (discountCounter < 4)
         discountCounter += 2;
