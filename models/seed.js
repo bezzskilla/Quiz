@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { UserModel, VentilationModel, ConditionModel } = require('./mongoose.js');
+const { VentilationModel, ConditionModel } = require('./mongoose.js');
 
 
 
