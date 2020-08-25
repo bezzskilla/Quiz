@@ -2,7 +2,6 @@ const ventilationButton = document.querySelector('#ventilationButton');
 const dialogAboutVentilation = document.querySelector('#dialogAboutVentilation');
 const closeDialogAboutVentilation = document.querySelector('#closeDialogAboutVentilation');
 const ventProgressBar = document.getElementById('progressBar');
-// const condDiscountBadge = document.getElementById('condDiscountBadge');
 const forVentilationhbs = document.querySelector('#forVentilationhbs');
 const ventDiscountBadge = document.getElementById('ventDiscountBadge');
 let counterOfVentilation = 0;
@@ -137,9 +136,6 @@ if (forVentilationhbs) {
     }
     if (e.target.id === 'lastBtnVent') {
       e.preventDefault();
-      // ventilationAnswerOfUser.answers.forEach((el, i) => {
-      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-      // })
       const userInfoForm = document.getElementById('userInfoVent');
       if (userInfoForm.children[2].value.length < 11) {
         alert('Вы ввели неправильные данные\n Запишите телефон в указанном формате');

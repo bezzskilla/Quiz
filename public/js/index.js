@@ -52,44 +52,15 @@ if (conditionButton) {
 if (forConditionhbs) {
   forConditionhbs.addEventListener('click', async (e) => {
     if (e.target.id == 'submitToCondition') {
-      // e.preventDefault();
       if (discountCounter < 4)
         discountCounter += 2
       if (discountCounter >= 4) {
         discountCounter += 1
       }
-      // if (discountCounter == 12) {
-      //   discountCounter -= 2
-      // }
       condDiscountBadge.innerText = `Ваша скидка: ${discountCounter}%`
       let percent = (condPercentCounter += 12)
       condProgressBar.style.cssText = `width: ${percent}%`
       condProgressBar.innerText = `${percent}%`;
-
-      if (counterOfCondition === 3) {
-        // прогресс бар на некоторые вопросы
-        // отрисовка другой хбс
-        // const polzResponce = await fetch('/hbs/polzunok.hbs')
-        // let polzHBShtml = await polzResponce.text();
-        // let template = Handlebars.compile(polzHBShtml);
-        // let html = template();
-        // counterOfCondition++;
-        // console.log(counterOfCondition)
-        // forConditionhbs.innerHTML = html;
-        // return
-      }
-      if (counterOfCondition === 6) {
-        // прогресс бар на некоторые вопросы
-        // отрисовка другой хбс
-        // const polzResponce = await fetch('/hbs/polzunok.hbs')
-        // let polzHBShtml = await polzResponce.text();
-        // let template = Handlebars.compile(polzHBShtml);
-        // let html = template();
-        // counterOfCondition++;
-        // console.log(counterOfCondition)
-        // forConditionhbs.innerHTML = html;
-        // return
-      }
       if (counterOfCondition > allQustionOfCondition.length - 1) {
         const endResponce = await fetch('/hbs/endOfCondQuiz.hbs');
         const endHBShtml = await endResponce.text();
@@ -144,9 +115,6 @@ if (forConditionhbs) {
     }
     if (e.target.id == "lastBtnCond") {
       e.preventDefault();
-      // answerOfUser.answers.forEach((el, i) => {
-      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-      // })
       const userInfoForm = document.getElementById('userInfoCond');
       if (userInfoForm.children[2].value.length < 11) {
         alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")
@@ -316,9 +284,6 @@ if (forVentilationhbs) {
     }
     if (e.target.id === 'lastBtnVent') {
       e.preventDefault();
-      // answerOfUser.answers.forEach((el, i) => {
-      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-      // })
       const userInfoForm = document.getElementById('userInfoVent');
       if (userInfoForm.children[2].value.length < 11) {
         alert("вы ввели неправильные данные\n Запишите телефон в указанном формате")

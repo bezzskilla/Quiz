@@ -134,9 +134,6 @@ if (forConditionhbs) {
     }
     if (e.target.id === 'lastBtnCond') {
       e.preventDefault();
-      // conditionAnswerOfUser.answers.forEach((el, i) => {
-      //   if (el.answers.length === 0) el.answers[i].slice(i, 1)
-      // })
       const userInfoForm = document.getElementById('userInfoCond');
       if (userInfoForm.children[2].value.length < 11) {
         alert("Вы ввели неправильные данные\n Запишите телефон в указанном формате");
